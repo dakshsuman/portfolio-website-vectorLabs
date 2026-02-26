@@ -20,109 +20,182 @@
             text-align: center;
         }
 
-        .category-section {
-            padding: 50px 5%;
-        }
-
-        .category-title {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            font-family: 'Space Grotesk', sans-serif;
-            color: var(--white);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 10px;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .project-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: transform 0.3s ease, background 0.3s ease;
-            position: relative;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            background: #1a1a24;
+        /* ===== PROJECTS LIST ===== */
+        .projects-list {
+            padding: 0 5% 100px;
             display: flex;
+            flex-direction: column;
+            gap: 120px;
+        }
+
+        .project-item {
+            display: flex;
+            gap: 60px;
             align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.5);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            /* default spotlight coordinates */
+            --mouse-x: 50%;
+            --mouse-y: 50%;
         }
 
-        /* Fallbacks for missing images if needed */
-        .img-ecommerce {
-            background: linear-gradient(135deg, #00CFFE 0%, #0984e3 100%);
+        /* Ambient spotlight follow effect */
+        .project-item::before {
+            content: '';
+            position: absolute;
+            inset: -40px;
+            /* Expand slightly outside the container for a softer bleed */
+            border-radius: 24px;
+            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y),
+                    rgba(255, 255, 255, 0.08),
+                    transparent 40%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
         }
 
-        .img-corporate {
-            background: linear-gradient(135deg, #FDCB6E 0%, #e17055 100%);
+        .project-item:hover::before {
+            opacity: 1;
         }
 
-        .img-portfolio {
-            background: linear-gradient(135deg, #FD79A8 0%, #e84393 100%);
+        .project-preview {
+            flex: 1.2;
+            aspect-ratio: 16 / 9;
+            /* 1280x720 aspect ratio */
+            background: #111;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
-        .img-webapp {
-            background: linear-gradient(135deg, #6C5CE7 0%, #a29bfe 100%);
+        .project-preview:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+        }
+
+        .preview-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: opacity 0.5s ease;
+        }
+
+        .img-layer {
+            background-size: cover;
+            background-position: center;
+            z-index: 2;
+            pointer-events: none;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+        }
+
+        /* The live website loading beneath the image! */
+        .iframe-layer {
+            z-index: 3;
+            /* bring above image */
+            opacity: 1;
+            /* Spotlight hole revealing the iframe only around the cursor */
+            -webkit-mask-image: radial-gradient(circle 0px at var(--preview-x, 50%) var(--preview-y, 50%), black 0%, transparent 100%);
+            mask-image: radial-gradient(circle 0px at var(--preview-x, 50%) var(--preview-y, 50%), black 0%, transparent 100%);
+            transition: -webkit-mask-image 0.4s ease, mask-image 0.4s ease;
+            pointer-events: none;
+        }
+
+        .iframe-layer iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Dissolve effect: on hover, the image fades away securely revealing the live iframe via organic center expansion! */
+        .project-preview:hover .img-layer {
+            transform: scale(1.02);
+            /* organic ripple inward feel */
+            filter: blur(2px) brightness(0.8);
+        }
+
+        .project-preview:hover .iframe-layer {
+            /* Full reveal expanding from the cursor locus organically */
+            -webkit-mask-image: radial-gradient(circle 420px at var(--preview-x, 50%) var(--preview-y, 50%), black 40%, transparent 100%);
+            mask-image: radial-gradient(circle 420px at var(--preview-x, 50%) var(--preview-y, 50%), black 40%, transparent 100%);
+            pointer-events: none;
+            /* Prevent iframe from stealing mouse events so tracking stays buttery */
         }
 
         .project-info {
-            padding: 20px;
+            flex: 0.8;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        .project-info h3 {
-            font-size: 1.25rem;
+        .works-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 4vw, 4rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 0;
             color: var(--white);
-            margin-bottom: 8px;
+            line-height: 1.1;
         }
 
-        .project-info p {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 15px;
+        .works-category {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary);
+        }
+
+        .works-desc {
+            font-family: 'Inter', sans-serif;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin: 0;
         }
 
         .project-link {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            color: var(--primary);
-            font-size: 0.9rem;
-            font-weight: 500;
+            gap: 10px;
+            color: var(--white);
             text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin-top: 10px;
             transition: color 0.3s ease;
+            width: fit-content;
         }
 
         .project-link:hover {
-            color: var(--white);
+            color: var(--primary);
         }
 
         .project-link svg {
-            width: 16px;
-            height: 16px;
+            width: 20px;
+            height: 20px;
             transition: transform 0.3s ease;
         }
 
         .project-link:hover svg {
-            transform: translateX(4px);
+            transform: translateX(5px) translateY(-5px);
+        }
+
+        @media (max-width: 992px) {
+            .project-item {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .project-preview {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -180,108 +253,132 @@
     <!-- ===== HEADER ===== -->
     <header class="projects-header">
         <p class="section-tag reveal reveal--up">Our Work</p>
-        <h1 class="section-title reveal reveal--up" style="--delay:.1s">Project Categories</h1>
+        <h1 class="section-title reveal reveal--up" style="--delay:.1s">Selected Projects</h1>
         <p class="section-desc reveal reveal--up" style="--delay:.2s">Discover our digital solutions tailored to various
             industries.</p>
     </header>
 
-    <!-- ===== CATEGORY: E-COMMERCE ===== -->
-    <section class="category-section">
-        <h2 class="category-title">E-Commerce Platforms</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-image img-ecommerce">Aqua Wellness Preview</div>
-                <div class="project-info">
-                    <h3>Aqua Wellness</h3>
-                    <p>High-conversion wellness brand store with premium UI elements.</p>
-                    <a href="demos/aqua-wellness/index.html" class="project-link" target="_blank">
-                        View Live Site
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-image img-ecommerce"
-                    style="background: linear-gradient(135deg, #0984e3 0%, #74b9ff 100%);">Urban Attire Preview</div>
-                <div class="project-info">
-                    <h3>Urban Attire</h3>
-                    <p>Modern streetwear fashion boutique with immersive shopping experience.</p>
-                    <a href="#" class="project-link">
-                        Coming Soon
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- ===== PROJECTS COMPONENT ===== -->
+    <div class="projects-list">
 
-    <!-- ===== CATEGORY: CREATIVE PORTFOLIOS ===== -->
-    <section class="category-section">
-        <h2 class="category-title">Creative Portfolios</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-image img-portfolio">Rosé Studio Preview</div>
-                <div class="project-info">
-                    <h3>Rosé Studio</h3>
-                    <p>Award-winning agency portfolio showcasing creative case studies.</p>
-                    <a href="demos/rose-studio/index.html" class="project-link" target="_blank">
-                        View Live Site
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </a>
+        <!-- NEBULA FINANCE -->
+        <div class="project-item reveal reveal--up">
+            <div class="project-preview" data-cursor="view">
+                <div class="preview-layer img-layer" style="background-image: url('nebula-dashboard.png');"></div>
+                <div class="preview-layer iframe-layer">
+                    <!-- The iframe loads when hover happens (handled automatically by css/dom, iframe src can be lazy-loaded) -->
+                    <iframe src="demos/nebula-finance/index.html"></iframe>
                 </div>
             </div>
-            <div class="project-card">
-                <div class="project-image img-portfolio"
-                    style="background: linear-gradient(135deg, #e84393 0%, #fab1a0 100%);">Luxe Atelier Preview</div>
-                <div class="project-info">
-                    <h3>Luxe Atelier</h3>
-                    <p>Minimalist interior design showcase with elegant typography and fluid transitions.</p>
-                    <a href="demos/luxe-atelier/index.html" class="project-link" target="_blank">
-                        View Live Site
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </a>
-                </div>
+            <div class="project-info">
+                <div class="works-category">Web App &bull; Corporate</div>
+                <h2 class="works-title">Nebula Finance</h2>
+                <p class="works-desc">Next-generation fintech dashboard web application. We built a data-rich, secure,
+                    and visually pleasing application that empowers decision-makers with real-time financial tracking
+                    and complex metrics made easy to understand.</p>
+                <a href="demos/nebula-finance/index.html" class="project-link" target="_blank" data-cursor="link">
+                    View Live Site
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
             </div>
         </div>
-    </section>
 
-    <!-- ===== CATEGORY: CORPORATE & B2B ===== -->
-    <section class="category-section">
-        <h2 class="category-title">Corporate & SaaS</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-image img-webapp">Nebula Finance Preview</div>
-                <div class="project-info">
-                    <h3>Nebula Finance</h3>
-                    <p>Next-generation fintech dashboard web application.</p>
-                    <a href="demos/nebula-finance/index.html" class="project-link" target="_blank">
-                        View Live Site
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </a>
+        <!-- AQUA WELLNESS -->
+        <div class="project-item reveal reveal--up">
+            <div class="project-preview" data-cursor="view">
+                <div class="preview-layer img-layer"
+                    style="background: linear-gradient(135deg, #00CFFE 0%, #0984e3 100%);"></div>
+                <div class="preview-layer iframe-layer">
+                    <iframe src="demos/aqua-wellness/index.html"></iframe>
                 </div>
             </div>
-            <div class="project-card">
-                <div class="project-image img-corporate">Solaris Energy Preview</div>
-                <div class="project-info">
-                    <h3>Solaris Energy</h3>
-                    <p>Modern clean tech energy provider with lead optimization workflows.</p>
-                    <a href="demos/solaris-energy/index.html" class="project-link" target="_blank">
-                        View Live Site
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </a>
-                </div>
+            <div class="project-info">
+                <div class="works-category">E-Commerce &bull; Retail</div>
+                <h2 class="works-title">Aqua Wellness</h2>
+                <p class="works-desc">A high-conversion boutique storefront for premium wellness products. We designed a
+                    fluid, refreshing digital experience focusing on calming aesthetics and seamless checkout flows.</p>
+                <a href="demos/aqua-wellness/index.html" class="project-link" target="_blank" data-cursor="link">
+                    View Live Site
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
             </div>
         </div>
-    </section>
+
+        <!-- ROSE STUDIO -->
+        <div class="project-item reveal reveal--up">
+            <div class="project-preview" data-cursor="view">
+                <div class="preview-layer img-layer"
+                    style="background: linear-gradient(135deg, #FD79A8 0%, #e84393 100%);"></div>
+                <div class="preview-layer iframe-layer">
+                    <iframe src="demos/rose-studio/index.html"></iframe>
+                </div>
+            </div>
+            <div class="project-info">
+                <div class="works-category">Portfolio &bull; Creative Agency</div>
+                <h2 class="works-title">Rosé Studio</h2>
+                <p class="works-desc">An award-winning agency portfolio showcasing creative case studies. We injected
+                    bold typography, massive contrast, and unexpected interactions to help their brand stand out
+                    instantly.</p>
+                <a href="demos/rose-studio/index.html" class="project-link" target="_blank" data-cursor="link">
+                    View Live Site
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- SOLARIS ENERGY -->
+        <div class="project-item reveal reveal--up">
+            <div class="project-preview" data-cursor="view">
+                <div class="preview-layer img-layer"
+                    style="background: linear-gradient(135deg, #FDCB6E 0%, #e17055 100%);"></div>
+                <div class="preview-layer iframe-layer">
+                    <iframe src="demos/solaris-energy/index.html"></iframe>
+                </div>
+            </div>
+            <div class="project-info">
+                <div class="works-category">Corporate &bull; Clean Tech</div>
+                <h2 class="works-title">Solaris Energy</h2>
+                <p class="works-desc">A modern lead optimization platform for a highly-scaled clean tech company. We
+                    completely reimagined the B2B conversion funnel using warm, energetic visuals.</p>
+                <a href="demos/solaris-energy/index.html" class="project-link" target="_blank" data-cursor="link">
+                    View Live Site
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- LUXE ATELIER -->
+        <div class="project-item reveal reveal--up">
+            <div class="project-preview" data-cursor="view">
+                <div class="preview-layer img-layer"
+                    style="background: linear-gradient(135deg, #FD79A8 0%, #e84393 100%);"></div>
+                <div class="preview-layer iframe-layer">
+                    <iframe src="demos/luxe-atelier/index.html"></iframe>
+                </div>
+            </div>
+            <div class="project-info">
+                <div class="works-category">Showcase &bull; Interior Design</div>
+                <h2 class="works-title">Luxe Atelier</h2>
+                <p class="works-desc">A minimalist interior design showcase featuring elegant typography and fluid
+                    transitions to perfectly complement physical architecture.</p>
+                <a href="demos/luxe-atelier/index.html" class="project-link" target="_blank" data-cursor="link">
+                    View Live Site
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+    </div>
 
     <!-- ===== FOOTER ===== -->
     <footer class="footer" role="contentinfo" style="margin-top: 50px;">
@@ -307,6 +404,77 @@
     </footer>
 
     <script src="scripts.js"></script>
+    <script>
+        // Spotlight & Liquid Mask Hover effect for project cards
+        const projectItems = document.querySelectorAll('.project-item');
+
+        projectItems.forEach(item => {
+            const preview = item.querySelector('.project-preview');
+            // tracking coordinates for the buttery lag effect
+            let reqId;
+            let pTargetX = 50;
+            let pTargetY = 50;
+            let pX = 50;
+            let pY = 50;
+            let isHoveringPreview = false;
+
+            item.addEventListener('mousemove', (e) => {
+                // Outer Spotlight logic
+                const rect = item.getBoundingClientRect();
+                const x = e.clientX - rect.left + 40; // adjusting for the -40px inset we applied 
+                const y = e.clientY - rect.top + 40;
+
+                // Update CSS variables for the radial glow
+                item.style.setProperty('--mouse-x', `${x}px`);
+                item.style.setProperty('--mouse-y', `${y}px`);
+
+                // Inner liquid mask tracking (convert to percentages)
+                if (preview) {
+                    const pRect = preview.getBoundingClientRect();
+                    pTargetX = ((e.clientX - pRect.left) / pRect.width) * 100;
+                    pTargetY = ((e.clientY - pRect.top) / pRect.height) * 100;
+                }
+            });
+
+            // The animation loop that creates the "organic / liquid" buttery dragging feel
+            const animateLiquidMask = () => {
+                if (!isHoveringPreview && Math.abs(pTargetX - pX) < 0.1 && Math.abs(pTargetY - pY) < 0.1) {
+                    return; // stop loop if idle and centered
+                }
+
+                // Lerp formula (12% translation per frame)
+                pX += (pTargetX - pX) * 0.12;
+                pY += (pTargetY - pY) * 0.12;
+
+                if (preview) {
+                    preview.style.setProperty('--preview-x', `${pX}%`);
+                    preview.style.setProperty('--preview-y', `${pY}%`);
+                }
+
+                reqId = requestAnimationFrame(animateLiquidMask);
+            };
+
+            // Trigger the organic mask only when interacting with the preview container
+            if (preview) {
+                preview.addEventListener('mouseenter', () => {
+                    isHoveringPreview = true;
+                    // Cancel any shrinking loop and start expanding from mouse
+                    cancelAnimationFrame(reqId);
+                    reqId = requestAnimationFrame(animateLiquidMask);
+                });
+
+                preview.addEventListener('mouseleave', () => {
+                    isHoveringPreview = false;
+                    // Reset target back to natural center for a smooth exit collapse
+                    pTargetX = 50;
+                    pTargetY = 50;
+                    cancelAnimationFrame(reqId);
+                    reqId = requestAnimationFrame(animateLiquidMask);
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
+```
