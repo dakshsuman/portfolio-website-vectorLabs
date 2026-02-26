@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Nebula Finance — Next-generation digital banking platform with intelligent insights and seamless transactions.">
+    <meta name="theme-color" content="#0A0E27">
+    <title>Nebula Finance — Digital Banking Reimagined</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%233B82F6'/><text x='16' y='22' text-anchor='middle' fill='white' font-size='18' font-family='sans-serif' font-weight='bold'>N</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ============================================================
+   NEBULA FINANCE — Dark Fintech Demo
+   ============================================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        :root {
+            --bg: #0A0E27;
+            --bg-card: rgba(15, 20, 50, .65);
+            --bg-card-solid: #0F1432;
+            --surface: #111638;
+            --surface-2: #161B45;
+            --border: rgba(255, 255, 255, .06);
+            --border-hover: rgba(59, 130, 246, .25);
+            --text: #C8D0E8;
+            --text-muted: rgba(255, 255, 255, .45);
+            --text-dim: rgba(255, 255, 255, .2);
+            --white: #F0F2FF;
+            --accent: #3B82F6;
+            --accent-glow: rgba(59, 130, 246, .35);
+            --accent-2: #818CF8;
+            --accent-3: #06B6D4;
+            --green: #22C55E;
+            --red: #EF4444;
+            --font-heading: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --radius: 16px;
+            --radius-sm: 12px;
+            --radius-xs: 8px;
+            --ease: cubic-bezier(.22, 1, .36, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased
+        }
+
+        body {
+            background: var(--bg);
+            min-height: 100vh
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: #fff
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        img {
+            display: block;
+            max-width: 100%
+        }
+
+        button {
+            border: none;
+            background: none;
+            font-family: inherit;
+            color: inherit;
+            cursor: pointer
+        }
+
+        /* ---- NAV ---- */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 0 clamp(24px, 5vw, 80px);
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(10, 14, 39, .7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border)
+        }
+
+        .nav__logo {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .nav__logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--accent);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .8rem;
+            font-weight: 800;
+            color: #fff
+        }
+
+        .nav__links {
+            display: flex;
+            align-items: center;
+            gap: 32px
+        }
+
+        .nav__link {
+            font-size: .8rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: color .3s
+        }
+
+        .nav__link:hover {
+            color: var(--white)
+        }
+
+        .nav__cta {
+            padding: 10px 24px;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 100px;
+            font-size: .8rem;
+            font-weight: 600;
+            transition: all .3s var(--ease)
+        }
+
+        .nav__cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--accent-glow)
+        }
+
+        @media(max-width:768px) {
+            .nav__links {
+                display: none
+            }
+        }
+
+        /* ---- HERO ---- */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px clamp(24px, 5vw, 80px) 80px;
+            overflow: hidden
+        }
+
+        .hero__glow {
+            position: absolute;
+            top: -200px;
+            right: -100px;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(59, 130, 246, .15) 0%, rgba(129, 140, 248, .06) 40%, transparent 70%);
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0
+        }
+
+        .hero__glow-2 {
+            position: absolute;
+            bottom: -300px;
+            left: -200px;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(6, 182, 212, .08) 0%, transparent 60%);
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0
+        }
+
+        .hero__grid {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(59, 130, 246, .03) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, .03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+            mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 70%)
+        }
+
+        .hero__content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            gap: 60px
+        }
+
+        .hero__text {
+            flex: 0 0 45%;
+            max-width: 560px
+        }
+
+        .hero__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: rgba(59, 130, 246, .08);
+            border: 1px solid rgba(59, 130, 246, .15);
+            border-radius: 100px;
+            font-size: .72rem;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            margin-bottom: 28px
+        }
+
+        .hero__badge-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease infinite
+        }
+
+        @keyframes pulse-dot {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, .4)
+            }
+
+            50% {
+                box-shadow: 0 0 0 8px rgba(34, 197, 94, 0)
+            }
+        }
+
+        .hero__headline {
+            font-family: var(--font-heading);
+            font-size: clamp(2.4rem, 5.5vw, 4rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.08;
+            margin-bottom: 22px
+        }
+
+        .hero__headline span {
+            background: linear-gradient(135deg, var(--accent), var(--accent-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text
+        }
+
+        .hero__sub {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 36px;
+            max-width: 480px
+        }
+
+        .hero__buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap
+        }
+
+        .hero__btn {
+            padding: 15px 34px;
+            border-radius: 100px;
+            font-size: .86rem;
+            font-weight: 600;
+            transition: all .3s var(--ease)
+        }
+
+        .hero__btn--primary {
+            background: var(--accent);
+            color: #fff
+        }
+
+        .hero__btn--primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px var(--accent-glow)
+        }
+
+        .hero__btn--ghost {
+            border: 1.5px solid var(--border);
+            color: var(--text)
+        }
+
+        .hero__btn--ghost:hover {
+            border-color: var(--accent);
+            color: var(--white)
+        }
+
+        /* ---- HERO DASHBOARD VISUAL ---- */
+        .hero__dashboard {
+            flex: 0 0 50%;
+            position: relative;
+            perspective: 1000px
+        }
+
+        .hero__dash-frame {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            backdrop-filter: blur(20px);
+            transform: rotateY(-6deg) rotateX(3deg);
+            transition: transform .6s var(--ease);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, .4), 0 0 60px rgba(59, 130, 246, .06)
+        }
+
+        .hero__dash-frame:hover {
+            transform: rotateY(-2deg) rotateX(1deg)
+        }
+
+        .hero__dash-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border)
+        }
+
+        .hero__dash-title {
+            font-family: var(--font-heading);
+            font-size: .9rem;
+            font-weight: 600;
+            color: var(--white)
+        }
+
+        .hero__dash-period {
+            font-size: .7rem;
+            color: var(--text-dim);
+            padding: 6px 14px;
+            border: 1px solid var(--border);
+            border-radius: 100px
+        }
+
+        .hero__chart-area {
+            position: relative;
+            height: 200px;
+            margin-bottom: 20px
+        }
+
+        .hero__chart-canvas {
+            width: 100%;
+            height: 100%
+        }
+
+        .hero__dash-kpis {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px
+        }
+
+        .hero__kpi {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 16px
+        }
+
+        .hero__kpi-label {
+            font-size: .65rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            margin-bottom: 6px
+        }
+
+        .hero__kpi-value {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--white)
+        }
+
+        .hero__kpi-change {
+            font-size: .7rem;
+            font-weight: 600;
+            margin-top: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px
+        }
+
+        .hero__kpi-change--up {
+            color: var(--green)
+        }
+
+        .hero__kpi-change--down {
+            color: var(--red)
+        }
+
+        @media(max-width:1024px) {
+            .hero__content {
+                flex-direction: column
+            }
+
+            .hero__text {
+                flex: none;
+                max-width: 100%;
+                text-align: center
+            }
+
+            .hero__sub {
+                margin-left: auto;
+                margin-right: auto
+            }
+
+            .hero__buttons {
+                justify-content: center
+            }
+
+            .hero__dashboard {
+                flex: none;
+                width: 100%;
+                max-width: 600px;
+                margin: 0 auto
+            }
+        }
+
+        /* ---- FLOATING KPI CARDS ---- */
+        .floating-kpis {
+            position: absolute;
+            z-index: 3;
+            pointer-events: none
+        }
+
+        .float-card {
+            position: absolute;
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 14px 18px;
+            animation: float-up 4s ease-in-out infinite;
+            pointer-events: auto
+        }
+
+        .float-card--1 {
+            top: -20px;
+            right: -30px;
+            animation-delay: 0s
+        }
+
+        .float-card--2 {
+            bottom: 40px;
+            left: -40px;
+            animation-delay: 1.5s
+        }
+
+        @keyframes float-up {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-12px)
+            }
+        }
+
+        .float-card__label {
+            font-size: .6rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: .1em
+        }
+
+        .float-card__value {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-top: 2px
+        }
+
+        .float-card__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            font-size: .65rem;
+            font-weight: 600;
+            color: var(--green);
+            margin-top: 4px
+        }
+
+        /* ---- PROOF STRIP ---- */
+        .proof {
+            padding: 56px clamp(24px, 5vw, 80px);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border)
+        }
+
+        .proof__container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .proof__item {
+            flex: 1;
+            text-align: center;
+            padding: 16px
+        }
+
+        .proof__number {
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+            font-weight: 700;
+            color: var(--white);
+            display: block
+        }
+
+        .proof__label {
+            font-size: .68rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            margin-top: 4px
+        }
+
+        .proof__div {
+            width: 1px;
+            height: 40px;
+            background: var(--border);
+            flex-shrink: 0
+        }
+
+        @media(max-width:600px) {
+            .proof__container {
+                flex-wrap: wrap
+            }
+
+            .proof__item {
+                flex: 0 0 50%
+            }
+
+            .proof__div {
+                display: none
+            }
+        }
+
+        /* ---- FEATURES (BENTO GRID) ---- */
+        .features {
+            padding: clamp(80px, 12vh, 140px) clamp(24px, 5vw, 80px)
+        }
+
+        .features__container {
+            max-width: 1200px;
+            margin: 0 auto
+        }
+
+        .features__header {
+            text-align: center;
+            margin-bottom: 64px
+        }
+
+        .features__tag {
+            font-size: .72rem;
+            font-weight: 600;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 14px
+        }
+
+        .features__title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4.5vw, 3rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 16px
+        }
+
+        .features__desc {
+            color: var(--text-muted);
+            max-width: 520px;
+            margin: 0 auto;
+            font-size: .9rem
+        }
+
+        .features__grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(200px, auto);
+            gap: 20px
+        }
+
+        .f-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            transition: all .5s var(--ease);
+            overflow: hidden;
+            position: relative
+        }
+
+        .f-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .3), 0 0 40px rgba(59, 130, 246, .06)
+        }
+
+        .f-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 0%, rgba(59, 130, 246, .06) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity .5s;
+            pointer-events: none
+        }
+
+        .f-card:hover::before {
+            opacity: 1
+        }
+
+        .f-card--wide {
+            grid-column: span 8
+        }
+
+        .f-card--narrow {
+            grid-column: span 4
+        }
+
+        .f-card--half {
+            grid-column: span 6
+        }
+
+        .f-card__icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(59, 130, 246, .1);
+            border-radius: var(--radius-xs);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            margin-bottom: 18px
+        }
+
+        .f-card__title {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 10px
+        }
+
+        .f-card__desc {
+            font-size: .82rem;
+            color: var(--text-muted);
+            line-height: 1.65
+        }
+
+        /* Mini chart in feature card */
+        .f-card__chart {
+            margin-top: 20px;
+            height: 100px;
+            position: relative
+        }
+
+        .f-card__chart canvas {
+            width: 100%;
+            height: 100%
+        }
+
+        /* Mini bar chart */
+        .f-card__bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 6px;
+            height: 80px;
+            margin-top: 16px
+        }
+
+        .f-bar {
+            flex: 1;
+            background: linear-gradient(to top, var(--accent), var(--accent-2));
+            border-radius: 4px 4px 0 0;
+            transition: height 1.5s var(--ease);
+            opacity: .7
+        }
+
+        .f-bar:hover {
+            opacity: 1
+        }
+
+        @media(max-width:900px) {
+
+            .f-card--wide,
+            .f-card--narrow,
+            .f-card--half {
+                grid-column: span 12
+            }
+        }
+
+        @media(min-width:901px) and (max-width:1024px) {
+            .f-card--wide {
+                grid-column: span 7
+            }
+
+            .f-card--narrow {
+                grid-column: span 5
+            }
+        }
+
+        /* ---- DASHBOARD SECTION ---- */
+        .dashboard {
+            padding: clamp(80px, 12vh, 140px) clamp(24px, 5vw, 80px);
+            background: var(--surface)
+        }
+
+        .dashboard__container {
+            max-width: 1200px;
+            margin: 0 auto
+        }
+
+        .dashboard__header {
+            text-align: center;
+            margin-bottom: 56px
+        }
+
+        .dashboard__preview {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, .4)
+        }
+
+        .dashboard__toolbar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(15, 20, 50, .5)
+        }
+
+        .dashboard__toolbar-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .08)
+        }
+
+        .dashboard__toolbar-dot:nth-child(1) {
+            background: #EF4444
+        }
+
+        .dashboard__toolbar-dot:nth-child(2) {
+            background: #F59E0B
+        }
+
+        .dashboard__toolbar-dot:nth-child(3) {
+            background: #22C55E
+        }
+
+        .dashboard__toolbar-url {
+            margin-left: 16px;
+            flex: 1;
+            background: rgba(255, 255, 255, .04);
+            border-radius: 6px;
+            padding: 6px 14px;
+            font-size: .7rem;
+            color: var(--text-dim)
+        }
+
+        .dashboard__body {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            min-height: 400px
+        }
+
+        .dashboard__sidebar {
+            border-right: 1px solid var(--border);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px
+        }
+
+        .dashboard__sidebar-item {
+            padding: 10px 14px;
+            border-radius: var(--radius-xs);
+            font-size: .78rem;
+            color: var(--text-muted);
+            transition: all .2s
+        }
+
+        .dashboard__sidebar-item:hover,
+        .dashboard__sidebar-item--active {
+            background: rgba(59, 130, 246, .08);
+            color: var(--accent)
+        }
+
+        .dashboard__main {
+            padding: 24px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto 1fr;
+            gap: 16px
+        }
+
+        .dash-stat {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 20px
+        }
+
+        .dash-stat__label {
+            font-size: .65rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: .1em
+        }
+
+        .dash-stat__value {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-top: 6px
+        }
+
+        .dash-stat__change {
+            font-size: .7rem;
+            font-weight: 600;
+            color: var(--green);
+            margin-top: 4px
+        }
+
+        .dashboard__chart {
+            grid-column: span 3;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            position: relative;
+            min-height: 180px
+        }
+
+        .dashboard__chart canvas {
+            width: 100%;
+            height: 100%
+        }
+
+        @media(max-width:768px) {
+            .dashboard__body {
+                grid-template-columns: 1fr
+            }
+
+            .dashboard__sidebar {
+                display: none
+            }
+
+            .dashboard__main {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .dashboard__chart {
+                grid-column: span 2
+            }
+        }
+
+        /* ---- TESTIMONIALS ---- */
+        .testimonials {
+            padding: clamp(80px, 12vh, 140px) clamp(24px, 5vw, 80px)
+        }
+
+        .testimonials__container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center
+        }
+
+        .testimonials__grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 56px;
+            text-align: left
+        }
+
+        .t-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            transition: all .5s var(--ease)
+        }
+
+        .t-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px)
+        }
+
+        .t-card__stars {
+            color: #F59E0B;
+            font-size: .85rem;
+            letter-spacing: 2px;
+            margin-bottom: 16px
+        }
+
+        .t-card__quote {
+            font-size: .88rem;
+            color: rgba(255, 255, 255, .7);
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 22px
+        }
+
+        .t-card__author {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .t-card__avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: .75rem;
+            color: #fff
+        }
+
+        .t-card__name {
+            font-size: .82rem;
+            font-weight: 600;
+            color: var(--white)
+        }
+
+        .t-card__role {
+            font-size: .7rem;
+            color: var(--text-dim)
+        }
+
+        @media(max-width:600px) {
+            .testimonials__grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        /* ---- CTA ---- */
+        .cta {
+            padding: clamp(100px, 14vh, 180px) clamp(24px, 5vw, 80px);
+            text-align: center;
+            position: relative;
+            overflow: hidden
+        }
+
+        .cta__glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 400px;
+            background: radial-gradient(ellipse, rgba(59, 130, 246, .12) 0%, transparent 60%);
+            filter: blur(80px);
+            pointer-events: none
+        }
+
+        .cta__container {
+            position: relative;
+            z-index: 2;
+            max-width: 640px;
+            margin: 0 auto
+        }
+
+        .cta__headline {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4.5vw, 3.2rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 18px
+        }
+
+        .cta__sub {
+            color: var(--text-muted);
+            font-size: .92rem;
+            line-height: 1.7;
+            margin-bottom: 36px
+        }
+
+        .cta__btn {
+            display: inline-flex;
+            padding: 18px 44px;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 100px;
+            font-size: .95rem;
+            font-weight: 600;
+            transition: all .3s var(--ease)
+        }
+
+        .cta__btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 50px var(--accent-glow)
+        }
+
+        /* ---- FOOTER ---- */
+        .footer {
+            padding: 48px clamp(24px, 5vw, 80px);
+            border-top: 1px solid var(--border);
+            text-align: center
+        }
+
+        .footer__container {
+            max-width: 1200px;
+            margin: 0 auto
+        }
+
+        .footer p {
+            font-size: .72rem;
+            color: var(--text-dim)
+        }
+
+        /* ---- ANIMATIONS ---- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            filter: blur(3px);
+            transition: opacity .8s var(--ease), transform .8s var(--ease), filter .8s;
+            transition-delay: var(--delay, 0s)
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0)
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            .reveal {
+                transition-duration: .01s !important;
+                transform: none !important;
+                filter: none !important
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav class="nav">
+        <a href="#" class="nav__logo">
+            <span class="nav__logo-icon">N</span>
+            <span>Nebula Finance</span>
+        </a>
+        <div class="nav__links">
+            <a href="#features" class="nav__link">Features</a>
+            <a href="#dashboard" class="nav__link">Dashboard</a>
+            <a href="#testimonials" class="nav__link">Reviews</a>
+            <a href="#cta" class="nav__cta">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero__glow"></div>
+        <div class="hero__glow-2"></div>
+        <div class="hero__grid"></div>
+        <div class="hero__content">
+            <div class="hero__text">
+                <div class="hero__badge reveal" style="--delay:.1s">
+                    <span class="hero__badge-dot"></span>
+                    Live Platform
+                </div>
+                <h1 class="hero__headline reveal" style="--delay:.2s">
+                    Banking <span>Reimagined</span> For The Digital Era
+                </h1>
+                <p class="hero__sub reveal" style="--delay:.35s">
+                    Intelligent analytics, real-time insights, and seamless transactions — all in one unified platform
+                    built for the future of finance.
+                </p>
+                <div class="hero__buttons reveal" style="--delay:.5s">
+                    <a href="#cta" class="hero__btn hero__btn--primary">Open Account</a>
+                    <a href="#features" class="hero__btn hero__btn--ghost">Explore Features</a>
+                </div>
+            </div>
+            <div class="hero__dashboard reveal" style="--delay:.3s">
+                <div class="floating-kpis">
+                    <div class="float-card float-card--1">
+                        <div class="float-card__label">Portfolio</div>
+                        <div class="float-card__value">$284K</div>
+                        <div class="float-card__badge">↑ 12.4%</div>
+                    </div>
+                    <div class="float-card float-card--2">
+                        <div class="float-card__label">Daily P&L</div>
+                        <div class="float-card__value">+$3,240</div>
+                        <div class="float-card__badge">↑ 2.1%</div>
+                    </div>
+                </div>
+                <div class="hero__dash-frame">
+                    <div class="hero__dash-header">
+                        <span class="hero__dash-title">Performance Overview</span>
+                        <span class="hero__dash-period">Last 30 Days</span>
+                    </div>
+                    <div class="hero__chart-area">
+                        <canvas class="hero__chart-canvas" id="heroChart"></canvas>
+                    </div>
+                    <div class="hero__dash-kpis">
+                        <div class="hero__kpi">
+                            <div class="hero__kpi-label">Total Balance</div>
+                            <div class="hero__kpi-value" data-target="847562" data-prefix="$" id="kpi1">$0</div>
+                            <div class="hero__kpi-change hero__kpi-change--up">↑ 18.3%</div>
+                        </div>
+                        <div class="hero__kpi">
+                            <div class="hero__kpi-label">Monthly Return</div>
+                            <div class="hero__kpi-value" data-target="12.4" data-suffix="%" data-decimal="true"
+                                id="kpi2">0%</div>
+                            <div class="hero__kpi-change hero__kpi-change--up">↑ 3.2%</div>
+                        </div>
+                        <div class="hero__kpi">
+                            <div class="hero__kpi-label">Active Assets</div>
+                            <div class="hero__kpi-value" data-target="34" id="kpi3">0</div>
+                            <div class="hero__kpi-change hero__kpi-change--up">↑ 6</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROOF -->
+    <section class="proof">
+        <div class="proof__container">
+            <div class="proof__item reveal" style="--delay:.1s">
+                <span class="proof__number" data-target="2.4" data-suffix="M+" data-decimal="true">0</span>
+                <span class="proof__label">Active Users</span>
+            </div>
+            <div class="proof__div"></div>
+            <div class="proof__item reveal" style="--delay:.2s">
+                <span class="proof__number" data-target="18" data-suffix="B+">0</span>
+                <span class="proof__label">Processed Daily</span>
+            </div>
+            <div class="proof__div"></div>
+            <div class="proof__item reveal" style="--delay:.3s">
+                <span class="proof__number" data-target="99.9" data-suffix="%" data-decimal="true">0</span>
+                <span class="proof__label">Uptime</span>
+            </div>
+            <div class="proof__div"></div>
+            <div class="proof__item reveal" style="--delay:.4s">
+                <span class="proof__number" data-target="142" data-suffix="">0</span>
+                <span class="proof__label">Countries</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES BENTO -->
+    <section class="features" id="features">
+        <div class="features__container">
+            <div class="features__header">
+                <p class="features__tag reveal">Platform Features</p>
+                <h2 class="features__title reveal" style="--delay:.1s">Intelligent Finance<br>Infrastructure</h2>
+                <p class="features__desc reveal" style="--delay:.2s">Everything you need to manage, grow, and protect
+                    your wealth in one powerful platform.</p>
+            </div>
+            <div class="features__grid">
+                <div class="f-card f-card--wide reveal" style="--delay:.1s">
+                    <div class="f-card__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path d="M18 20V10M12 20V4M6 20v-6" />
+                        </svg>
+                    </div>
+                    <div class="f-card__title">Real-Time Analytics</div>
+                    <div class="f-card__desc">Live portfolio tracking with AI-powered insights and predictive market
+                        analysis across all asset classes.</div>
+                    <div class="f-card__chart"><canvas id="featureChart1"></canvas></div>
+                </div>
+                <div class="f-card f-card--narrow reveal" style="--delay:.2s">
+                    <div class="f-card__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <rect x="3" y="11" width="18" height="11" rx="2" />
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                        </svg>
+                    </div>
+                    <div class="f-card__title">Bank-Grade Security</div>
+                    <div class="f-card__desc">256-bit encryption, biometric auth, and SOC 2 Type II compliance.</div>
+                    <div class="f-card__bars" id="securityBars"></div>
+                </div>
+                <div class="f-card f-card--narrow reveal" style="--delay:.3s">
+                    <div class="f-card__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10" />
+                            <path
+                                d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                        </svg>
+                    </div>
+                    <div class="f-card__title">Global Transfers</div>
+                    <div class="f-card__desc">Send money to 142 countries with near-zero fees and instant settlement.
+                    </div>
+                </div>
+                <div class="f-card f-card--wide reveal" style="--delay:.4s">
+                    <div class="f-card__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                            <path d="M2 17l10 5 10-5" />
+                            <path d="M2 12l10 5 10-5" />
+                        </svg>
+                    </div>
+                    <div class="f-card__title">AI-Powered Insights</div>
+                    <div class="f-card__desc">Machine learning algorithms analyze market patterns and deliver
+                        personalized investment recommendations.</div>
+                </div>
+                <div class="f-card f-card--half reveal" style="--delay:.15s">
+                    <div class="f-card__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                        </svg>
+                    </div>
+                    <div class="f-card__title">Instant Settlements</div>
+                    <div class="f-card__desc">T+0 settlement across all supported markets with blockchain verification.
+                    </div>
+                </div>
+                <div class="f-card f-card--half reveal" style="--delay:.25s">
+                    <div class="f-card__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <rect x="2" y="3" width="20" height="14" rx="2" />
+                            <path d="M8 21h8M12 17v4" />
+                        </svg>
+                    </div>
+                    <div class="f-card__title">Multi-Device Sync</div>
+                    <div class="f-card__desc">Seamless experience across desktop, mobile, and tablet with real-time
+                        sync.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DASHBOARD PREVIEW -->
+    <section class="dashboard" id="dashboard">
+        <div class="dashboard__container">
+            <div class="dashboard__header">
+                <p class="features__tag reveal">Product</p>
+                <h2 class="features__title reveal" style="--delay:.1s">The Dashboard</h2>
+                <p class="features__desc reveal" style="--delay:.2s">A command center for your entire financial life.
+                </p>
+            </div>
+            <div class="dashboard__preview reveal" style="--delay:.3s">
+                <div class="dashboard__toolbar">
+                    <span class="dashboard__toolbar-dot"></span>
+                    <span class="dashboard__toolbar-dot"></span>
+                    <span class="dashboard__toolbar-dot"></span>
+                    <span class="dashboard__toolbar-url">app.nebulafinance.com/dashboard</span>
+                </div>
+                <div class="dashboard__body">
+                    <div class="dashboard__sidebar">
+                        <div class="dashboard__sidebar-item dashboard__sidebar-item--active">◈ Overview</div>
+                        <div class="dashboard__sidebar-item">◇ Portfolio</div>
+                        <div class="dashboard__sidebar-item">◇ Transactions</div>
+                        <div class="dashboard__sidebar-item">◇ Analytics</div>
+                        <div class="dashboard__sidebar-item">◇ Transfers</div>
+                        <div class="dashboard__sidebar-item">◇ Settings</div>
+                    </div>
+                    <div class="dashboard__main">
+                        <div class="dash-stat">
+                            <div class="dash-stat__label">Total Balance</div>
+                            <div class="dash-stat__value">$847,562</div>
+                            <div class="dash-stat__change">↑ 18.3% this month</div>
+                        </div>
+                        <div class="dash-stat">
+                            <div class="dash-stat__label">Today's P&L</div>
+                            <div class="dash-stat__value">+$3,240</div>
+                            <div class="dash-stat__change">↑ 0.38%</div>
+                        </div>
+                        <div class="dash-stat">
+                            <div class="dash-stat__label">Active Positions</div>
+                            <div class="dash-stat__value">34</div>
+                            <div class="dash-stat__change">6 new this week</div>
+                        </div>
+                        <div class="dashboard__chart">
+                            <canvas id="dashboardChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials" id="testimonials">
+        <div class="testimonials__container">
+            <p class="features__tag reveal">Trusted By Leaders</p>
+            <h2 class="features__title reveal" style="--delay:.1s">What Our Users Say</h2>
+            <div class="testimonials__grid">
+                <div class="t-card reveal" style="--delay:.15s">
+                    <div class="t-card__stars">★★★★★</div>
+                    <div class="t-card__quote">"Nebula transformed how we manage corporate treasury. The real-time
+                        analytics alone saved us $2M in the first quarter."</div>
+                    <div class="t-card__author">
+                        <div class="t-card__avatar" style="background:linear-gradient(135deg,#3B82F6,#818CF8)">JK</div>
+                        <div>
+                            <div class="t-card__name">James Keller</div>
+                            <div class="t-card__role">CFO, TechScale Inc.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-card reveal" style="--delay:.25s">
+                    <div class="t-card__stars">★★★★★</div>
+                    <div class="t-card__quote">"The best banking UI I've ever used. Clean, fast, and genuinely
+                        intelligent. Switched from three apps to just Nebula."</div>
+                    <div class="t-card__author">
+                        <div class="t-card__avatar" style="background:linear-gradient(135deg,#06B6D4,#3B82F6)">SL</div>
+                        <div>
+                            <div class="t-card__name">Sarah Lin</div>
+                            <div class="t-card__role">Portfolio Manager</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="cta">
+        <div class="cta__glow"></div>
+        <div class="cta__container">
+            <h2 class="cta__headline reveal">Ready to Take Control<br>of Your Finances?</h2>
+            <p class="cta__sub reveal" style="--delay:.1s">Join 2.4 million users who trust Nebula to manage, grow, and
+                protect their wealth.</p>
+            <a href="#" class="cta__btn reveal" style="--delay:.2s">Create Free Account</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer__container">
+            <p>&copy; 2026 Nebula Finance. All rights reserved. This is a demo website.</p>
+        </div>
+    </footer>
+
+    <script>
+        (() => {
+            'use strict';
+            const $ = (s, c = document) => c.querySelector(s);
+            const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+            const raf = cb => requestAnimationFrame(cb);
+            const ease = t => 1 - Math.pow(1 - t, 4);
+
+            /* ---- REVEAL ---- */
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+            $$('.reveal').forEach(el => observer.observe(el));
+
+            /* ---- ANIMATED COUNTERS ---- */
+            function animateCounters() {
+                const counters = $$('[data-target]');
+                const cObs = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const el = entry.target;
+                            const target = parseFloat(el.dataset.target);
+                            const suffix = el.dataset.suffix || '';
+                            const prefix = el.dataset.prefix || '';
+                            const isDecimal = el.dataset.decimal === 'true';
+                            const duration = 2000;
+                            const start = performance.now();
+                            function step(now) {
+                                const p = Math.min((now - start) / duration, 1);
+                                const v = target * ease(p);
+                                if (isDecimal) el.textContent = prefix + v.toFixed(1) + suffix;
+                                else el.textContent = prefix + Math.floor(v).toLocaleString() + suffix;
+                                if (p < 1) raf(step);
+                            }
+                            raf(step);
+                            cObs.unobserve(el);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                counters.forEach(c => cObs.observe(c));
+            }
+            animateCounters();
+
+            /* ---- HERO CHART — Animated Line ---- */
+            const heroChart = $('#heroChart');
+            if (heroChart) {
+                const ctx = heroChart.getContext('2d');
+                let W, H;
+                function resize() {
+                    const dpr = Math.min(devicePixelRatio, 2);
+                    W = heroChart.clientWidth; H = heroChart.clientHeight;
+                    heroChart.width = W * dpr; heroChart.height = H * dpr;
+                    ctx.scale(dpr, dpr);
+                }
+                resize();
+                window.addEventListener('resize', resize);
+
+                const points = [30, 45, 35, 60, 50, 75, 65, 85, 70, 90, 80, 95, 88];
+                const maxVal = 100;
+                let progress = 0;
+
+                function drawChart() {
+                    ctx.clearRect(0, 0, W, H);
+                    const padding = { top: 10, bottom: 20, left: 0, right: 0 };
+                    const chartW = W - padding.left - padding.right;
+                    const chartH = H - padding.top - padding.bottom;
+
+                    // Grid lines
+                    ctx.strokeStyle = 'rgba(59,130,246,.06)';
+                    ctx.lineWidth = 1;
+                    for (let i = 0; i < 5; i++) {
+                        const y = padding.top + (chartH / 4) * i;
+                        ctx.beginPath(); ctx.moveTo(padding.left, y); ctx.lineTo(W - padding.right, y); ctx.stroke();
+                    }
+
+                    // Draw filled area + line
+                    const step = chartW / (points.length - 1);
+                    const currentLen = Math.floor(progress * (points.length - 1)) + 1;
+                    if (currentLen < 2) { if (progress < 1) { progress += 0.015; raf(drawChart); } return; }
+
+                    // Gradient fill
+                    const grad = ctx.createLinearGradient(0, padding.top, 0, H);
+                    grad.addColorStop(0, 'rgba(59,130,246,.2)');
+                    grad.addColorStop(1, 'rgba(59,130,246,0)');
+
+                    ctx.beginPath();
+                    ctx.moveTo(padding.left, padding.top + chartH - (points[0] / maxVal) * chartH);
+                    for (let i = 1; i < currentLen && i < points.length; i++) {
+                        const x = padding.left + step * i;
+                        const y = padding.top + chartH - (points[i] / maxVal) * chartH;
+                        const prevX = padding.left + step * (i - 1);
+                        const prevY = padding.top + chartH - (points[i - 1] / maxVal) * chartH;
+                        const cpX = (prevX + x) / 2;
+                        ctx.bezierCurveTo(cpX, prevY, cpX, y, x, y);
+                    }
+                    const lastX = padding.left + step * (currentLen - 1);
+                    const lastY = padding.top + chartH - (points[currentLen - 1] / maxVal) * chartH;
+
+                    // Fill
+                    ctx.lineTo(lastX, H);
+                    ctx.lineTo(padding.left, H);
+                    ctx.closePath();
+                    ctx.fillStyle = grad;
+                    ctx.fill();
+
+                    // Line
+                    ctx.beginPath();
+                    ctx.moveTo(padding.left, padding.top + chartH - (points[0] / maxVal) * chartH);
+                    for (let i = 1; i < currentLen && i < points.length; i++) {
+                        const x = padding.left + step * i;
+                        const y = padding.top + chartH - (points[i] / maxVal) * chartH;
+                        const prevX = padding.left + step * (i - 1);
+                        const prevY = padding.top + chartH - (points[i - 1] / maxVal) * chartH;
+                        const cpX = (prevX + x) / 2;
+                        ctx.bezierCurveTo(cpX, prevY, cpX, y, x, y);
+                    }
+                    ctx.strokeStyle = '#3B82F6';
+                    ctx.lineWidth = 2.5;
+                    ctx.stroke();
+
+                    // Glow dot
+                    ctx.beginPath();
+                    ctx.arc(lastX, lastY, 5, 0, Math.PI * 2);
+                    ctx.fillStyle = '#3B82F6';
+                    ctx.fill();
+                    ctx.beginPath();
+                    ctx.arc(lastX, lastY, 10, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(59,130,246,.2)';
+                    ctx.fill();
+
+                    if (progress < 1) { progress += 0.015; raf(drawChart); }
+                }
+
+                // Start when visible
+                const chartObs = new IntersectionObserver(entries => {
+                    if (entries[0].isIntersecting) { drawChart(); chartObs.unobserve(heroChart); }
+                }, { threshold: 0.3 });
+                chartObs.observe(heroChart);
+            }
+
+            /* ---- FEATURE MINI CHART ---- */
+            const fc1 = $('#featureChart1');
+            if (fc1) {
+                const ctx = fc1.getContext('2d');
+                let W, H;
+                function resizeFc() {
+                    const dpr = Math.min(devicePixelRatio, 2);
+                    W = fc1.clientWidth; H = fc1.clientHeight;
+                    fc1.width = W * dpr; fc1.height = H * dpr;
+                    ctx.scale(dpr, dpr);
+                }
+                resizeFc();
+                const pts = [20, 35, 25, 50, 40, 65, 55, 70, 60, 80, 72, 88, 82, 95];
+
+                function drawFc() {
+                    ctx.clearRect(0, 0, W, H);
+                    const step = W / (pts.length - 1);
+                    const grad = ctx.createLinearGradient(0, 0, 0, H);
+                    grad.addColorStop(0, 'rgba(59,130,246,.15)');
+                    grad.addColorStop(1, 'rgba(59,130,246,0)');
+
+                    ctx.beginPath();
+                    ctx.moveTo(0, H - (pts[0] / 100) * H);
+                    for (let i = 1; i < pts.length; i++) {
+                        const x = step * i;
+                        const y = H - (pts[i] / 100) * H;
+                        const px = step * (i - 1);
+                        const py = H - (pts[i - 1] / 100) * H;
+                        ctx.bezierCurveTo((px + x) / 2, py, (px + x) / 2, y, x, y);
+                    }
+                    ctx.lineTo(W, H); ctx.lineTo(0, H); ctx.closePath();
+                    ctx.fillStyle = grad; ctx.fill();
+
+                    ctx.beginPath();
+                    ctx.moveTo(0, H - (pts[0] / 100) * H);
+                    for (let i = 1; i < pts.length; i++) {
+                        const x = step * i;
+                        const y = H - (pts[i] / 100) * H;
+                        const px = step * (i - 1);
+                        const py = H - (pts[i - 1] / 100) * H;
+                        ctx.bezierCurveTo((px + x) / 2, py, (px + x) / 2, y, x, y);
+                    }
+                    ctx.strokeStyle = '#3B82F6';
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                }
+                const fcObs = new IntersectionObserver(entries => {
+                    if (entries[0].isIntersecting) { drawFc(); fcObs.unobserve(fc1); }
+                }, { threshold: 0.3 });
+                fcObs.observe(fc1);
+            }
+
+            /* ---- SECURITY BARS ---- */
+            const barsEl = $('#securityBars');
+            if (barsEl) {
+                const heights = [60, 85, 45, 90, 70, 55, 80, 65, 95, 75];
+                heights.forEach(h => {
+                    const bar = document.createElement('div');
+                    bar.className = 'f-bar';
+                    bar.style.height = '0%';
+                    barsEl.appendChild(bar);
+                });
+                const barObs = new IntersectionObserver(entries => {
+                    if (entries[0].isIntersecting) {
+                        barsEl.querySelectorAll('.f-bar').forEach((bar, i) => {
+                            setTimeout(() => { bar.style.height = heights[i] + '%'; }, i * 80);
+                        });
+                        barObs.unobserve(barsEl);
+                    }
+                }, { threshold: 0.5 });
+                barObs.observe(barsEl);
+            }
+
+            /* ---- DASHBOARD CHART ---- */
+            const dashChart = $('#dashboardChart');
+            if (dashChart) {
+                const ctx2 = dashChart.getContext('2d');
+                let W2, H2;
+                function resizeDash() {
+                    const dpr = Math.min(devicePixelRatio, 2);
+                    W2 = dashChart.clientWidth; H2 = dashChart.clientHeight;
+                    dashChart.width = W2 * dpr; dashChart.height = H2 * dpr;
+                    ctx2.scale(dpr, dpr);
+                }
+                resizeDash();
+                const pts2 = [40, 42, 38, 55, 50, 65, 60, 58, 70, 75, 68, 80, 78, 85, 82, 90, 88, 92];
+                function drawDash() {
+                    ctx2.clearRect(0, 0, W2, H2);
+                    const step = W2 / (pts2.length - 1);
+                    const grad = ctx2.createLinearGradient(0, 0, 0, H2);
+                    grad.addColorStop(0, 'rgba(59,130,246,.12)');
+                    grad.addColorStop(1, 'rgba(59,130,246,0)');
+                    ctx2.beginPath();
+                    ctx2.moveTo(0, H2 - (pts2[0] / 100) * H2);
+                    for (let i = 1; i < pts2.length; i++) {
+                        const x = step * i, y = H2 - (pts2[i] / 100) * H2;
+                        const px = step * (i - 1), py = H2 - (pts2[i - 1] / 100) * H2;
+                        ctx2.bezierCurveTo((px + x) / 2, py, (px + x) / 2, y, x, y);
+                    }
+                    ctx2.lineTo(W2, H2); ctx2.lineTo(0, H2); ctx2.closePath();
+                    ctx2.fillStyle = grad; ctx2.fill();
+                    ctx2.beginPath();
+                    ctx2.moveTo(0, H2 - (pts2[0] / 100) * H2);
+                    for (let i = 1; i < pts2.length; i++) {
+                        const x = step * i, y = H2 - (pts2[i] / 100) * H2;
+                        const px = step * (i - 1), py = H2 - (pts2[i - 1] / 100) * H2;
+                        ctx2.bezierCurveTo((px + x) / 2, py, (px + x) / 2, y, x, y);
+                    }
+                    ctx2.strokeStyle = '#3B82F6'; ctx2.lineWidth = 2; ctx2.stroke();
+                }
+                const dObs = new IntersectionObserver(entries => {
+                    if (entries[0].isIntersecting) { drawDash(); dObs.unobserve(dashChart); }
+                }, { threshold: 0.3 });
+                dObs.observe(dashChart);
+            }
+
+            /* ---- SMOOTH SCROLL ---- */
+            $$('a[href^="#"]').forEach(a => {
+                a.addEventListener('click', e => {
+                    const target = $(a.getAttribute('href'));
+                    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+                });
+            });
+
+        })();
+    </script>
+</body>
+
+</html>

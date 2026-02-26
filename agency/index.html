@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="North Vector Labs — A premium digital experience agency crafting award-winning websites, immersive interactions, and strategic digital products.">
+    <meta name="theme-color" content="#0B0B0F">
+    <title>North Vector Labs — Digital Experience Agency</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- ===== LOADING SCREEN ===== -->
+    <div id="loader" class="loader" aria-hidden="true">
+        <div class="loader__logo">
+            <span class="loader__letter" style="--i:0">N</span>
+            <span class="loader__letter" style="--i:1">O</span>
+            <span class="loader__letter" style="--i:2">R</span>
+            <span class="loader__letter" style="--i:3">T</span>
+            <span class="loader__letter" style="--i:4">H</span>
+            <span class="loader__letter" style="--i:5">&nbsp;</span>
+            <span class="loader__letter" style="--i:6">V</span>
+            <span class="loader__letter" style="--i:7">E</span>
+            <span class="loader__letter" style="--i:8">C</span>
+            <span class="loader__letter" style="--i:9">T</span>
+            <span class="loader__letter" style="--i:10">O</span>
+            <span class="loader__letter" style="--i:11">R</span>
+        </div>
+        <div class="loader__bar">
+            <div class="loader__progress"></div>
+        </div>
+    </div>
+
+    <!-- ===== SCROLL PROGRESS ===== -->
+    <div id="scrollProgress" class="scroll-progress" aria-hidden="true"></div>
+
+    <!-- ===== CUSTOM CURSOR ===== -->
+    <div id="cursor" class="cursor" aria-hidden="true">
+        <div class="cursor__dot"></div>
+        <div class="cursor__ring"></div>
+        <span class="cursor__label"></span>
+    </div>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav id="navbar" class="navbar" role="navigation" aria-label="Main navigation">
+        <a href="#" class="navbar__logo" aria-label="North Vector Labs Home">
+            <span class="navbar__logo-text">NORTH VECTOR LABS</span>
+        </a>
+        <div class="navbar__links" id="navLinks">
+            <a href="#services" class="navbar__link" data-cursor="link">Services</a>
+            <a href="#showcase" class="navbar__link" data-cursor="link">Work</a>
+            <a href="#cases" class="navbar__link" data-cursor="link">Case Studies</a>
+            <a href="#about" class="navbar__link" data-cursor="link">About</a>
+            <a href="#contact" class="navbar__link navbar__link--cta" data-cursor="link">Let's Talk</a>
+        </div>
+        <button class="navbar__burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section id="hero" class="hero" aria-label="Hero">
+        <canvas id="heroCanvas" class="hero__canvas" aria-hidden="true"></canvas>
+        <canvas class="hero__particles" aria-hidden="true"></canvas>
+        <div class="hero__glow" id="heroGlow" aria-hidden="true"></div>
+        <div class="hero__content">
+            <div class="hero__text">
+                <p class="hero__tag reveal reveal--up" style="--delay:.1s">Digital Experience Agency</p>
+                <h1 class="hero__headline">
+                    <span class="hero__line reveal reveal--up" style="--delay:.2s">We Build</span>
+                    <span class="hero__line hero__line--accent reveal reveal--up"
+                        style="--delay:.35s">Experiences</span>
+                    <span class="hero__line reveal reveal--up" style="--delay:.5s">Beyond Limits</span>
+                </h1>
+                <p class="hero__sub reveal reveal--up" style="--delay:.65s">Award-winning digital products, immersive
+                    interactions, and strategic design that elevates brands beyond convention.</p>
+                <div class="hero__buttons reveal reveal--up" style="--delay:.8s">
+                    <a href="#showcase" class="btn btn--primary" data-cursor="cta" id="heroCtaPrimary">
+                        <span>Explore Our Work</span>
+                        <span class="btn__ripple"></span>
+                    </a>
+                    <a href="#contact" class="btn btn--ghost" data-cursor="cta" id="heroCtaSecondary">
+                        <span>Start a Project</span>
+                    </a>
+                </div>
+            </div>
+            <div class="hero__visual reveal reveal--scale" style="--delay:.4s">
+                <div class="hero__3d-object" id="hero3dObject" aria-hidden="true">
+                    <div class="hero__sphere">
+                        <div class="hero__sphere-ring" style="--ring:0"></div>
+                        <div class="hero__sphere-ring" style="--ring:1"></div>
+                        <div class="hero__sphere-ring" style="--ring:2"></div>
+                        <div class="hero__sphere-ring" style="--ring:3"></div>
+                        <div class="hero__sphere-ring" style="--ring:4"></div>
+                        <div class="hero__sphere-ring" style="--ring:5"></div>
+                    </div>
+                    <div class="hero__ambient-glow"></div>
+                </div>
+            </div>
+        </div>
+        <div class="hero__scroll-hint reveal reveal--up" style="--delay:1.2s" aria-hidden="true">
+            <span>Scroll to explore</span>
+            <div class="hero__scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- ===== PROOF STRIP ===== -->
+    <section id="proof" class="proof" aria-label="Key statistics">
+        <div class="proof__container">
+            <div class="proof__card reveal reveal--up" style="--delay:.1s" data-cursor="hover">
+                <span class="proof__number" data-target="150" data-suffix="+">0</span>
+                <span class="proof__label">Projects Delivered</span>
+            </div>
+            <div class="proof__divider" aria-hidden="true"></div>
+            <div class="proof__card reveal reveal--up" style="--delay:.2s" data-cursor="hover">
+                <span class="proof__number" data-target="40" data-suffix="+">0</span>
+                <span class="proof__label">Global Clients</span>
+            </div>
+            <div class="proof__divider" aria-hidden="true"></div>
+            <div class="proof__card reveal reveal--up" style="--delay:.3s" data-cursor="hover">
+                <span class="proof__number" data-target="12">0</span>
+                <span class="proof__label">Design Awards</span>
+            </div>
+            <div class="proof__divider" aria-hidden="true"></div>
+            <div class="proof__card reveal reveal--up" style="--delay:.4s" data-cursor="hover">
+                <span class="proof__number" data-target="98" data-suffix="%">0</span>
+                <span class="proof__label">Client Satisfaction</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SHOWCASE CAROUSEL ===== -->
+    <section id="showcase" class="showcase" aria-label="Project showcase">
+        <div class="showcase__header">
+            <p class="section-tag reveal reveal--up">Selected Work</p>
+            <h2 class="section-title reveal reveal--up" style="--delay:.1s">Interactive Showcase</h2>
+            <p class="section-desc reveal reveal--up" style="--delay:.2s">Explore our finest digital experiences — drag
+                to navigate.</p>
+        </div>
+        <div class="showcase__device-toggle reveal reveal--up" style="--delay:.3s">
+            <button class="device-btn device-btn--active" data-device="desktop" aria-label="Desktop view">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="3" width="20" height="14" rx="2" />
+                    <path d="M8 21h8M12 17v4" />
+                </svg>
+            </button>
+            <button class="device-btn" data-device="tablet" aria-label="Tablet view">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="4" y="2" width="16" height="20" rx="2" />
+                    <path d="M12 18h.01" />
+                </svg>
+            </button>
+            <button class="device-btn" data-device="mobile" aria-label="Mobile view">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="5" y="2" width="14" height="20" rx="2" />
+                    <path d="M12 18h.01" />
+                </svg>
+            </button>
+        </div>
+        <div class="showcase__carousel" id="showcaseCarousel" role="region" aria-label="Project carousel">
+            <div class="showcase__track" id="showcaseTrack">
+                <!-- DEMO SITES AS IFRAMES -->
+                <div class="showcase__card" data-cursor="view" data-index="0">
+                    <div class="showcase__card-inner">
+                        <iframe src="demos/nebula-finance/index.html" class="showcase__iframe" title="Nebula Finance" loading="lazy" tabindex="0"></iframe>
+                        <div class="showcase__info">
+                            <h3>Nebula Finance</h3>
+                            <p>Fintech Platform &bull; Web App</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="showcase__card" data-cursor="view" data-index="1">
+                    <div class="showcase__card-inner">
+                        <iframe src="demos/aqua-wellness/index.html" class="showcase__iframe" title="Aqua Wellness" loading="lazy" tabindex="0"></iframe>
+                        <div class="showcase__info">
+                            <h3>Aqua Wellness</h3>
+                            <p>Health &amp; Wellness &bull; E-commerce</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="showcase__card" data-cursor="view" data-index="2">
+                    <div class="showcase__card-inner">
+                        <iframe src="demos/rose-studio/index.html" class="showcase__iframe" title="Rose Studio" loading="lazy" tabindex="0"></iframe>
+                        <div class="showcase__info">
+                            <h3>Rosé Studio</h3>
+                            <p>Creative Agency &bull; Portfolio</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="showcase__card" data-cursor="view" data-index="3">
+                    <div class="showcase__card-inner">
+                        <iframe src="demos/solaris-energy/index.html" class="showcase__iframe" title="Solaris Energy" loading="lazy" tabindex="0"></iframe>
+                        <div class="showcase__info">
+                            <h3>Solaris Energy</h3>
+                            <p>CleanTech &bull; Corporate</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="showcase__card" data-cursor="view" data-index="4">
+                    <div class="showcase__card-inner">
+                        <iframe src="demos/luxe-atelier/index.html" class="showcase__iframe" title="Luxe Atelier" loading="lazy" tabindex="0"></iframe>
+                        <div class="showcase__info">
+                            <h3>Luxe Atelier</h3>
+                            <p>Interior Design &bull; Showcase</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="showcase__nav" aria-label="Carousel navigation">
+            <button class="showcase__arrow showcase__arrow--prev" id="carouselPrev" aria-label="Previous project"
+                data-cursor="link">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <div class="showcase__dots" id="carouselDots"></div>
+            <button class="showcase__arrow showcase__arrow--next" id="carouselNext" aria-label="Next project"
+                data-cursor="link">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- ===== FULLSCREEN MODAL ===== -->
+    <div id="showcaseModal" class="modal" role="dialog" aria-modal="true" aria-label="Project preview" hidden>
+        <button class="modal__close" id="modalClose" aria-label="Close preview" data-cursor="link">&times;</button>
+        <div class="modal__content" id="modalContent"></div>
+    </div>
+
+    <!-- ===== SERVICES ===== -->
+    <section id="services" class="services" aria-label="Our services">
+        <div class="services__container">
+            <p class="section-tag reveal reveal--up">What We Do</p>
+            <h2 class="section-title reveal reveal--up" style="--delay:.1s">Services</h2>
+            <div class="services__grid">
+                <div class="services__card reveal reveal--up" style="--delay:.15s" data-cursor="hover" tabindex="0"
+                    role="button" aria-expanded="false">
+                    <div class="services__card-accent"></div>
+                    <div class="services__icon" aria-hidden="true">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10" />
+                            <path
+                                d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                        </svg>
+                    </div>
+                    <h3 class="services__title">Web Development</h3>
+                    <p class="services__desc">High-performance, responsive websites engineered for speed, scalability,
+                        and immersive user experience.</p>
+                    <div class="services__detail" aria-hidden="true">
+                        <p>From headless CMS architectures to full-stack web applications, we craft digital platforms
+                            that perform beautifully at every scale. Our tech stack includes React, Next.js, Node.js,
+                            and custom WebGL experiences.</p>
+                    </div>
+                </div>
+                <div class="services__card reveal reveal--up" style="--delay:.25s" data-cursor="hover" tabindex="0"
+                    role="button" aria-expanded="false">
+                    <div class="services__card-accent"></div>
+                    <div class="services__icon" aria-hidden="true">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                            <path d="M2 17l10 5 10-5" />
+                            <path d="M2 12l10 5 10-5" />
+                        </svg>
+                    </div>
+                    <h3 class="services__title">UI/UX Design</h3>
+                    <p class="services__desc">Research-driven, emotionally intelligent design systems that guide users
+                        with purpose and delight.</p>
+                    <div class="services__detail" aria-hidden="true">
+                        <p>We design interfaces that feel intuitive and look extraordinary. Our process blends user
+                            research, prototyping, motion design, and micro-interaction engineering into cohesive brand
+                            experiences.</p>
+                    </div>
+                </div>
+                <div class="services__card reveal reveal--up" style="--delay:.35s" data-cursor="hover" tabindex="0"
+                    role="button" aria-expanded="false">
+                    <div class="services__card-accent"></div>
+                    <div class="services__icon" aria-hidden="true">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path
+                                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                            <line x1="12" y1="22.08" x2="12" y2="12" />
+                        </svg>
+                    </div>
+                    <h3 class="services__title">Brand Strategy</h3>
+                    <p class="services__desc">Strategic brand positioning that creates lasting emotional connections and
+                        drives market authority.</p>
+                    <div class="services__detail" aria-hidden="true">
+                        <p>We build brand ecosystems — from visual identity and tone of voice to experiential strategy.
+                            Every touchpoint is engineered to resonate with your audience and differentiate in crowded
+                            markets.</p>
+                    </div>
+                </div>
+                <div class="services__card reveal reveal--up" style="--delay:.45s" data-cursor="hover" tabindex="0"
+                    role="button" aria-expanded="false">
+                    <div class="services__card-accent"></div>
+                    <div class="services__icon" aria-hidden="true">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                        </svg>
+                    </div>
+                    <h3 class="services__title">Motion & 3D</h3>
+                    <p class="services__desc">Cinematic motion design and real-time 3D experiences that captivate and
+                        convert.</p>
+                    <div class="services__detail" aria-hidden="true">
+                        <p>From scroll-driven animations to full WebGL environments, we bring interfaces to life. Our
+                            motion work spans micro-interactions, spatial UI, product configurators, and immersive brand
+                            worlds.</p>
+                    </div>
+                </div>
+                <div class="services__card reveal reveal--up" style="--delay:.55s" data-cursor="hover" tabindex="0"
+                    role="button" aria-expanded="false">
+                    <div class="services__card-accent"></div>
+                    <div class="services__icon" aria-hidden="true">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path d="M18 20V10M12 20V4M6 20v-6" />
+                        </svg>
+                    </div>
+                    <h3 class="services__title">Growth & SEO</h3>
+                    <p class="services__desc">Data-driven growth strategies that blend technical SEO, analytics, and
+                        conversion optimization.</p>
+                    <div class="services__detail" aria-hidden="true">
+                        <p>We engineer visibility. Core Web Vitals optimization, structured data, content strategy, and
+                            conversion funnel analysis — all grounded in measurable results and iterative improvement.
+                        </p>
+                    </div>
+                </div>
+                <div class="services__card reveal reveal--up" style="--delay:.65s" data-cursor="hover" tabindex="0"
+                    role="button" aria-expanded="false">
+                    <div class="services__card-accent"></div>
+                    <div class="services__icon" aria-hidden="true">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                            <line x1="8" y1="21" x2="16" y2="21" />
+                            <line x1="12" y1="17" x2="12" y2="21" />
+                        </svg>
+                    </div>
+                    <h3 class="services__title">Product Design</h3>
+                    <p class="services__desc">End-to-end product thinking — from discovery through launch and continuous
+                        iteration.</p>
+                    <div class="services__detail" aria-hidden="true">
+                        <p>SaaS dashboards, mobile apps, enterprise tools — we design products that solve real problems
+                            with elegant, scalable interfaces. User testing and iteration built into every sprint.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CASE STUDIES ===== -->
+    <section id="cases" class="cases" aria-label="Case studies">
+        <div class="cases__container">
+            <p class="section-tag reveal reveal--up">Results That Speak</p>
+            <h2 class="section-title reveal reveal--up" style="--delay:.1s">Case Studies</h2>
+            <div class="cases__grid">
+                <!-- Case 1 -->
+                <article class="cases__card reveal reveal--up" style="--delay:.15s" data-cursor="view" tabindex="0">
+                    <div class="cases__card-visual" style="--accent: #6C5CE7">
+                        <div class="cases__card-image"
+                            style="background: linear-gradient(135deg, #6C5CE7 0%, #a29bfe 100%)">
+                            <span class="cases__card-tag">Fintech</span>
+                        </div>
+                    </div>
+                    <div class="cases__card-body">
+                        <h3>Nebula Finance</h3>
+                        <p>Redesigned the entire digital banking experience, achieving a 340% increase in user
+                            engagement and 2.1x conversion rate.</p>
+                        <div class="cases__metrics">
+                            <div class="cases__metric">
+                                <span class="cases__metric-number" data-target="340" data-suffix="%">0</span>
+                                <span class="cases__metric-label">Engagement ↑</span>
+                            </div>
+                            <div class="cases__metric">
+                                <span class="cases__metric-number" data-target="2.1" data-suffix="x"
+                                    data-decimal="true">0</span>
+                                <span class="cases__metric-label">Conversion ↑</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <!-- Case 2 -->
+                <article class="cases__card reveal reveal--up" style="--delay:.25s" data-cursor="view" tabindex="0">
+                    <div class="cases__card-visual" style="--accent: #00CFFE">
+                        <div class="cases__card-image"
+                            style="background: linear-gradient(135deg, #00CFFE 0%, #0984e3 100%)">
+                            <span class="cases__card-tag">E-commerce</span>
+                        </div>
+                    </div>
+                    <div class="cases__card-body">
+                        <h3>Aqua Wellness</h3>
+                        <p>Built a premium e-commerce platform with immersive product experiences, driving $2.4M in
+                            first-quarter revenue.</p>
+                        <div class="cases__metrics">
+                            <div class="cases__metric">
+                                <span class="cases__metric-number" data-target="2.4" data-prefix="$" data-suffix="M"
+                                    data-decimal="true">0</span>
+                                <span class="cases__metric-label">Q1 Revenue</span>
+                            </div>
+                            <div class="cases__metric">
+                                <span class="cases__metric-number" data-target="89" data-suffix="%">0</span>
+                                <span class="cases__metric-label">Satisfaction</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <!-- Case 3 -->
+                <article class="cases__card reveal reveal--up" style="--delay:.35s" data-cursor="view" tabindex="0">
+                    <div class="cases__card-visual" style="--accent: #FDCB6E">
+                        <div class="cases__card-image"
+                            style="background: linear-gradient(135deg, #FDCB6E 0%, #e17055 100%)">
+                            <span class="cases__card-tag">CleanTech</span>
+                        </div>
+                    </div>
+                    <div class="cases__card-body">
+                        <h3>Solaris Energy</h3>
+                        <p>Created an interactive 3D solar configurator that reduced sales cycles by 60% and boosted
+                            lead quality.</p>
+                        <div class="cases__metrics">
+                            <div class="cases__metric">
+                                <span class="cases__metric-number" data-target="60" data-suffix="%">0</span>
+                                <span class="cases__metric-label">Faster Sales</span>
+                            </div>
+                            <div class="cases__metric">
+                                <span class="cases__metric-number" data-target="4.8" data-suffix="/5"
+                                    data-decimal="true">0</span>
+                                <span class="cases__metric-label">User Rating</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section id="testimonials" class="testimonials" aria-label="Client testimonials">
+        <div class="testimonials__container">
+            <p class="section-tag reveal reveal--up">Client Voices</p>
+            <h2 class="section-title reveal reveal--up" style="--delay:.1s">What They Say</h2>
+            <div class="testimonials__slider" id="testimonialSlider">
+                <div class="testimonials__track" id="testimonialTrack">
+                    <div class="testimonials__card" data-cursor="hover">
+                        <div class="testimonials__quote">&ldquo;North Vector Labs didn't just build us a website — they
+                            crafted a digital masterpiece that our customers can't stop talking about.&rdquo;</div>
+                        <div class="testimonials__author">
+                            <div class="testimonials__avatar"
+                                style="background: linear-gradient(135deg, #6C5CE7, #a29bfe)">JK</div>
+                            <div class="testimonials__meta">
+                                <strong>James Keller</strong>
+                                <span>CEO, Nebula Finance</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonials__card" data-cursor="hover">
+                        <div class="testimonials__quote">&ldquo;The level of interaction and polish they brought
+                            exceeded everything we imagined. Our conversion rates speak for themselves.&rdquo;</div>
+                        <div class="testimonials__author">
+                            <div class="testimonials__avatar"
+                                style="background: linear-gradient(135deg, #00CFFE, #0984e3)">SL</div>
+                            <div class="testimonials__meta">
+                                <strong>Sarah Lin</strong>
+                                <span>CMO, Aqua Wellness</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonials__card" data-cursor="hover">
+                        <div class="testimonials__quote">&ldquo;Working with North Vector Labs felt like collaborating
+                            with artists who speak in code. The result is nothing short of breathtaking.&rdquo;</div>
+                        <div class="testimonials__author">
+                            <div class="testimonials__avatar"
+                                style="background: linear-gradient(135deg, #FD79A8, #e84393)">MR</div>
+                            <div class="testimonials__meta">
+                                <strong>Marco Rivera</strong>
+                                <span>Founder, Rosé Studio</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonials__card" data-cursor="hover">
+                        <div class="testimonials__quote">&ldquo;They transformed our brand's online presence from
+                            ordinary to extraordinary. The 3D configurator alone generated more leads than our entire
+                            previous funnel.&rdquo;</div>
+                        <div class="testimonials__author">
+                            <div class="testimonials__avatar"
+                                style="background: linear-gradient(135deg, #FDCB6E, #e17055)">AT</div>
+                            <div class="testimonials__meta">
+                                <strong>Anika Torres</strong>
+                                <span>VP Marketing, Solaris Energy</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonials__card" data-cursor="hover">
+                        <div class="testimonials__quote">&ldquo;From the first concept to the final pixel, North Vector
+                            Labs
+                            demonstrated an obsessive attention to detail that sets them apart from everyone
+                            else.&rdquo;</div>
+                        <div class="testimonials__author">
+                            <div class="testimonials__avatar"
+                                style="background: linear-gradient(135deg, #00B894, #55efc4)">DW</div>
+                            <div class="testimonials__meta">
+                                <strong>David Wong</strong>
+                                <span>CTO, Evergreen Markets</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT / TIMELINE ===== -->
+    <section id="about" class="about" aria-label="About us">
+        <div class="about__container">
+            <div class="about__text">
+                <p class="section-tag reveal reveal--up">Who We Are</p>
+                <h2 class="section-title reveal reveal--up" style="--delay:.1s">Performance Lab Identity</h2>
+                <p class="about__desc reveal reveal--up" style="--delay:.2s">We are a collective of designers,
+                    engineers, and strategists obsessed with pushing the boundaries of what digital experiences can be.
+                    Founded in 2019, we've grown from a two-person studio to an award-winning agency serving global
+                    brands.</p>
+            </div>
+            <div class="about__timeline">
+                <div class="about__timeline-line" aria-hidden="true">
+                    <div class="about__timeline-line-fill"></div>
+                </div>
+                <div class="about__timeline-item reveal reveal--left" style="--delay:.1s">
+                    <div class="about__timeline-dot" aria-hidden="true"></div>
+                    <div class="about__timeline-content">
+                        <span class="about__timeline-year">2019</span>
+                        <h4>The Spark</h4>
+                        <p>Founded with a vision to make the web feel alive. Two founders, one laptop, infinite
+                            ambition.</p>
+                    </div>
+                </div>
+                <div class="about__timeline-item reveal reveal--right" style="--delay:.2s">
+                    <div class="about__timeline-dot" aria-hidden="true"></div>
+                    <div class="about__timeline-content">
+                        <span class="about__timeline-year">2020</span>
+                        <h4>First Award</h4>
+                        <p>Our debut project won a CSS Design Award Site of the Day, putting us on the map.</p>
+                    </div>
+                </div>
+                <div class="about__timeline-item reveal reveal--left" style="--delay:.3s">
+                    <div class="about__timeline-dot" aria-hidden="true"></div>
+                    <div class="about__timeline-content">
+                        <span class="about__timeline-year">2022</span>
+                        <h4>Global Reach</h4>
+                        <p>Expanded to serve clients across 12 countries, specializing in immersive digital experiences.
+                        </p>
+                    </div>
+                </div>
+                <div class="about__timeline-item reveal reveal--right" style="--delay:.4s">
+                    <div class="about__timeline-dot" aria-hidden="true"></div>
+                    <div class="about__timeline-content">
+                        <span class="about__timeline-year">2024</span>
+                        <h4>Award-Winning Studio</h4>
+                        <p>12 Awwwards, 150+ projects shipped, and a reputation for the impossible.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about__stats">
+                <div class="about__stat reveal reveal--up" style="--delay:.1s">
+                    <span class="about__stat-number" data-target="24">0</span>
+                    <span class="about__stat-label">Team Members</span>
+                </div>
+                <div class="about__stat reveal reveal--up" style="--delay:.2s">
+                    <span class="about__stat-number" data-target="12">0</span>
+                    <span class="about__stat-label">Countries Served</span>
+                </div>
+                <div class="about__stat reveal reveal--up" style="--delay:.3s">
+                    <span class="about__stat-number" data-target="5">0</span>
+                    <span class="about__stat-label">Years of Craft</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FINAL CTA ===== -->
+    <section id="contact" class="cta" aria-label="Contact us">
+        <canvas id="ctaCanvas" class="cta__canvas" aria-hidden="true"></canvas>
+        <div class="cta__container">
+            <p class="section-tag reveal reveal--up" style="color: rgba(255,255,255,.5)">Ready to Go Beyond?</p>
+            <h2 class="cta__headline reveal reveal--up" style="--delay:.1s">Let's Build Something<br><span
+                    class="cta__highlight">Extraordinary</span></h2>
+            <p class="cta__sub reveal reveal--up" style="--delay:.2s">Have a project in mind? We'd love to hear about
+                it. Let's create your next award-winning experience together.</p>
+            <div class="cta__buttons reveal reveal--up" style="--delay:.35s">
+                <a href="mailto:hello@northvectorlabs.com" class="btn btn--primary btn--lg" data-cursor="cta"
+                    id="ctaBtn">
+                    <span>Start Your Project</span>
+                    <span class="btn__ripple"></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer__container">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <span class="footer__logo">NORTH VECTOR LABS</span>
+                    <p>Crafting digital experiences that defy convention.</p>
+                </div>
+                <div class="footer__links">
+                    <div class="footer__col">
+                        <h4>Navigate</h4>
+                        <a href="#hero">Home</a>
+                        <a href="#services">Services</a>
+                        <a href="#showcase">Work</a>
+                        <a href="#cases">Case Studies</a>
+                    </div>
+                    <div class="footer__col">
+                        <h4>Connect</h4>
+                        <a href="#">Twitter / X</a>
+                        <a href="#">LinkedIn</a>
+                        <a href="#">Dribbble</a>
+                        <a href="#">Instagram</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2026 North Vector Labs. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== CHATBOT ===== -->
+    <div id="chatbot" class="chatbot" aria-label="Chat with us">
+        <button class="chatbot__toggle" id="chatToggle" aria-label="Open chat" data-cursor="cta">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+            </svg>
+            <span class="chatbot__badge" aria-hidden="true">1</span>
+        </button>
+        <div class="chatbot__window" id="chatWindow" hidden>
+            <div class="chatbot__header">
+                <div class="chatbot__header-info">
+                    <div class="chatbot__status"></div>
+                    <span>NVL Assistant</span>
+                </div>
+                <button class="chatbot__close" id="chatClose" aria-label="Close chat">&times;</button>
+            </div>
+            <div class="chatbot__messages" id="chatMessages">
+                <div class="chatbot__msg chatbot__msg--bot">
+                    <p>Hey there! 👋 I'm the North Vector Labs assistant. How can I help you today?</p>
+                </div>
+            </div>
+            <div class="chatbot__quick" id="chatQuick">
+                <button class="chatbot__quick-btn" data-msg="I'd like to start a project">Start a Project</button>
+                <button class="chatbot__quick-btn" data-msg="What services do you offer?">Our Services</button>
+                <button class="chatbot__quick-btn" data-msg="Can I see your pricing?">Pricing</button>
+            </div>
+            <form class="chatbot__input" id="chatForm">
+                <input type="text" id="chatInput" placeholder="Type a message..." autocomplete="off"
+                    aria-label="Chat message">
+                <button type="submit" aria-label="Send message">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>

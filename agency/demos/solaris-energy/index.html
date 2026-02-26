@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Solaris Energy — Intelligent solar solutions with real-time monitoring and industry-leading ROI.">
+    <meta name="theme-color" content="#F5F9F2">
+    <title>Solaris Energy — Smart Solar Solutions</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%23F59E0B'/><text x='16' y='22' text-anchor='middle' fill='white' font-size='16' font-family='sans-serif' font-weight='bold'>S</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        :root {
+            --bg: #F8FAF5;
+            --bg-card: #FFFFFF;
+            --surface: #EFF5E8;
+            --surface-2: #E5EDD8;
+            --border: rgba(0, 0, 0, .06);
+            --border-hover: rgba(34, 197, 94, .2);
+            --text: #445544;
+            --text-muted: rgba(44, 68, 44, .55);
+            --text-dim: rgba(44, 68, 44, .3);
+            --heading: #1A2E1A;
+            --accent: #22C55E;
+            --accent-glow: rgba(34, 197, 94, .2);
+            --accent-2: #16A34A;
+            --amber: #F59E0B;
+            --amber-glow: rgba(245, 158, 11, .2);
+            --font-heading: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --radius: 18px;
+            --radius-sm: 12px;
+            --radius-xs: 8px;
+            --ease: cubic-bezier(.22, 1, .36, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased
+        }
+
+        body {
+            background: var(--bg);
+            min-height: 100vh
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: #fff
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        img {
+            display: block;
+            max-width: 100%
+        }
+
+        button {
+            border: none;
+            background: none;
+            font-family: inherit;
+            color: inherit;
+            cursor: pointer
+        }
+
+        /* NAV */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 0 clamp(24px, 5vw, 80px);
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(248, 250, 245, .88);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border)
+        }
+
+        .nav__logo {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--heading);
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .nav__logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--amber);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 16px var(--amber-glow)
+        }
+
+        .nav__logo-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: #fff
+        }
+
+        .nav__links {
+            display: flex;
+            align-items: center;
+            gap: 32px
+        }
+
+        .nav__link {
+            font-size: .82rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: color .3s
+        }
+
+        .nav__link:hover {
+            color: var(--accent-2)
+        }
+
+        .nav__cta {
+            padding: 10px 24px;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 100px;
+            font-size: .82rem;
+            font-weight: 600;
+            transition: all .3s var(--ease)
+        }
+
+        .nav__cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--accent-glow)
+        }
+
+        @media(max-width:768px) {
+            .nav__links {
+                display: none
+            }
+        }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px clamp(24px, 5vw, 80px) 80px;
+            overflow: hidden;
+            background: linear-gradient(180deg, #E8F0DD 0%, var(--bg) 100%)
+        }
+
+        .hero__grid-pattern {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: .5
+        }
+
+        .hero__grid-pattern canvas {
+            width: 100%;
+            height: 100%
+        }
+
+        .hero__content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1300px;
+            margin: 0 auto;
+            gap: 60px
+        }
+
+        .hero__text {
+            flex: 0 0 50%;
+            max-width: 580px
+        }
+
+        .hero__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: rgba(34, 197, 94, .08);
+            border: 1px solid rgba(34, 197, 94, .15);
+            border-radius: 100px;
+            font-size: .72rem;
+            font-weight: 600;
+            color: var(--accent-2);
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            margin-bottom: 28px
+        }
+
+        .hero__headline {
+            font-family: var(--font-heading);
+            font-size: clamp(2.4rem, 5.5vw, 4rem);
+            font-weight: 700;
+            color: var(--heading);
+            line-height: 1.08;
+            margin-bottom: 22px
+        }
+
+        .hero__headline span {
+            color: var(--accent-2)
+        }
+
+        .hero__roi {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 6px;
+            margin-bottom: 22px;
+            padding: 12px 20px;
+            background: rgba(245, 158, 11, .06);
+            border: 1px solid rgba(245, 158, 11, .12);
+            border-radius: var(--radius-sm)
+        }
+
+        .hero__roi-number {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--amber)
+        }
+
+        .hero__roi-label {
+            font-size: .78rem;
+            color: var(--text-muted);
+            font-weight: 500
+        }
+
+        .hero__sub {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 36px;
+            max-width: 480px
+        }
+
+        .hero__buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap
+        }
+
+        .hero__btn {
+            padding: 16px 36px;
+            border-radius: 100px;
+            font-size: .86rem;
+            font-weight: 600;
+            transition: all .3s var(--ease)
+        }
+
+        .hero__btn--primary {
+            background: var(--accent);
+            color: #fff
+        }
+
+        .hero__btn--primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px var(--accent-glow)
+        }
+
+        .hero__btn--ghost {
+            border: 1.5px solid var(--border);
+            color: var(--text)
+        }
+
+        .hero__btn--ghost:hover {
+            border-color: var(--accent);
+            color: var(--accent-2)
+        }
+
+        /* HERO VISUAL — Solar Panel Grid */
+        .hero__visual {
+            flex: 0 0 44%;
+            position: relative
+        }
+
+        .solar-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            perspective: 800px
+        }
+
+        .solar-cell {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #1A2E1A 0%, #2D4F2D 50%, #1A2E1A 100%);
+            border-radius: var(--radius-xs);
+            position: relative;
+            overflow: hidden;
+            transition: all .5s var(--ease);
+            transform: rotateX(12deg) rotateY(-4deg)
+        }
+
+        .solar-cell:hover {
+            transform: rotateX(0deg) rotateY(0deg);
+            box-shadow: 0 10px 30px rgba(34, 197, 94, .15)
+        }
+
+        .solar-cell::before {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            border: 1px solid rgba(34, 197, 94, .15);
+            border-radius: 6px
+        }
+
+        .solar-cell::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .08), transparent);
+            transition: left .5s
+        }
+
+        .solar-cell:hover::after {
+            left: 150%
+        }
+
+        .solar-cell__glow {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(245, 158, 11, .15) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity .5s;
+            animation: cell-pulse 3s ease-in-out infinite
+        }
+
+        @keyframes cell-pulse {
+
+            0%,
+            100% {
+                opacity: 0
+            }
+
+            50% {
+                opacity: .6
+            }
+        }
+
+        .solar-cell:nth-child(1) .solar-cell__glow {
+            animation-delay: 0s
+        }
+
+        .solar-cell:nth-child(2) .solar-cell__glow {
+            animation-delay: .4s
+        }
+
+        .solar-cell:nth-child(3) .solar-cell__glow {
+            animation-delay: .8s
+        }
+
+        .solar-cell:nth-child(4) .solar-cell__glow {
+            animation-delay: 1.2s
+        }
+
+        .solar-cell:nth-child(5) .solar-cell__glow {
+            animation-delay: .2s
+        }
+
+        .solar-cell:nth-child(6) .solar-cell__glow {
+            animation-delay: .6s
+        }
+
+        .solar-cell:nth-child(7) .solar-cell__glow {
+            animation-delay: 1s
+        }
+
+        .solar-cell:nth-child(8) .solar-cell__glow {
+            animation-delay: .3s
+        }
+
+        .solar-cell:nth-child(9) .solar-cell__glow {
+            animation-delay: .7s
+        }
+
+        @media(max-width:1024px) {
+            .hero__content {
+                flex-direction: column;
+                text-align: center
+            }
+
+            .hero__text {
+                flex: none;
+                max-width: 100%
+            }
+
+            .hero__sub {
+                margin: 0 auto 36px
+            }
+
+            .hero__buttons {
+                justify-content: center
+            }
+
+            .hero__visual {
+                flex: none;
+                max-width: 400px;
+                margin: 0 auto
+            }
+        }
+
+        /* STATS */
+        .stats {
+            padding: 56px clamp(24px, 5vw, 80px);
+            background: var(--surface)
+        }
+
+        .stats__container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap
+        }
+
+        .stats__item {
+            flex: 1;
+            min-width: 140px;
+            text-align: center;
+            padding: 16px 24px
+        }
+
+        .stats__number {
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 3vw, 2.2rem);
+            font-weight: 700;
+            color: var(--heading);
+            display: block
+        }
+
+        .stats__label {
+            font-size: .7rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            margin-top: 4px
+        }
+
+        .stats__div {
+            width: 1px;
+            height: 40px;
+            background: var(--border);
+            flex-shrink: 0;
+            align-self: center
+        }
+
+        @media(max-width:600px) {
+            .stats__div {
+                display: none
+            }
+
+            .stats__item {
+                flex: 0 0 50%
+            }
+        }
+
+        /* CONFIGURATOR */
+        .configurator {
+            padding: clamp(80px, 12vh, 140px) clamp(24px, 5vw, 80px)
+        }
+
+        .configurator__container {
+            max-width: 1100px;
+            margin: 0 auto
+        }
+
+        .configurator__header {
+            text-align: center;
+            margin-bottom: 56px
+        }
+
+        .section-tag {
+            font-size: .72rem;
+            font-weight: 600;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--accent-2);
+            margin-bottom: 14px
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4.5vw, 3rem);
+            font-weight: 700;
+            color: var(--heading);
+            line-height: 1.1;
+            margin-bottom: 16px
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            max-width: 480px;
+            margin: 0 auto;
+            font-size: .9rem
+        }
+
+        .config-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, .04)
+        }
+
+        .config-panel__left {
+            display: flex;
+            flex-direction: column;
+            gap: 28px
+        }
+
+        .config-slider {
+            display: flex;
+            flex-direction: column;
+            gap: 10px
+        }
+
+        .config-slider__label {
+            display: flex;
+            justify-content: space-between;
+            font-size: .82rem;
+            font-weight: 500;
+            color: var(--heading)
+        }
+
+        .config-slider__value {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: var(--accent-2)
+        }
+
+        .config-slider input[type=range] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--surface);
+            outline: none
+        }
+
+        .config-slider input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+            box-shadow: 0 2px 8px var(--accent-glow)
+        }
+
+        .config-panel__right {
+            background: var(--surface);
+            border-radius: var(--radius-sm);
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px
+        }
+
+        .config-result {
+            text-align: center
+        }
+
+        .config-result__label {
+            font-size: .7rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            margin-bottom: 6px
+        }
+
+        .config-result__value {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--heading)
+        }
+
+        .config-result__sub {
+            font-size: .75rem;
+            color: var(--accent-2);
+            font-weight: 600;
+            margin-top: 4px
+        }
+
+        .config-result__divider {
+            width: 40px;
+            height: 2px;
+            background: var(--border);
+            margin: 0 auto
+        }
+
+        @media(max-width:768px) {
+            .config-panel {
+                grid-template-columns: 1fr
+            }
+        }
+
+        /* FEATURES */
+        .features {
+            padding: clamp(80px, 12vh, 140px) clamp(24px, 5vw, 80px);
+            background: var(--surface)
+        }
+
+        .features__container {
+            max-width: 1100px;
+            margin: 0 auto
+        }
+
+        .features__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 56px
+        }
+
+        .feat {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px 24px;
+            transition: all .5s var(--ease)
+        }
+
+        .feat:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, .06);
+            border-color: var(--border-hover)
+        }
+
+        .feat__icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(34, 197, 94, .08);
+            border-radius: var(--radius-xs);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+            font-size: 1.4rem
+        }
+
+        .feat__title {
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--heading);
+            margin-bottom: 10px
+        }
+
+        .feat__desc {
+            font-size: .82rem;
+            color: var(--text-muted);
+            line-height: 1.65
+        }
+
+        @media(max-width:768px) {
+            .features__grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        /* CTA */
+        .cta {
+            padding: clamp(100px, 14vh, 180px) clamp(24px, 5vw, 80px);
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg) 0%, #E0ECCE 100%)
+        }
+
+        .cta__container {
+            max-width: 600px;
+            margin: 0 auto
+        }
+
+        .cta__headline {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4.5vw, 3rem);
+            font-weight: 700;
+            color: var(--heading);
+            line-height: 1.1;
+            margin-bottom: 18px
+        }
+
+        .cta__headline span {
+            color: var(--accent-2)
+        }
+
+        .cta__sub {
+            color: var(--text-muted);
+            font-size: .92rem;
+            line-height: 1.7;
+            margin-bottom: 36px
+        }
+
+        .cta__btn {
+            display: inline-flex;
+            padding: 18px 44px;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 100px;
+            font-size: .95rem;
+            font-weight: 600;
+            transition: all .3s var(--ease)
+        }
+
+        .cta__btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 50px var(--accent-glow)
+        }
+
+        .footer {
+            padding: 40px clamp(24px, 5vw, 80px);
+            border-top: 1px solid var(--border);
+            text-align: center
+        }
+
+        .footer p {
+            font-size: .72rem;
+            color: var(--text-dim)
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity .8s var(--ease), transform .8s var(--ease);
+            transition-delay: var(--delay, 0s)
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            .reveal {
+                transition-duration: .01s !important;
+                transform: none !important
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav">
+        <a href="#" class="nav__logo">
+            <span class="nav__logo-icon"><svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="5" />
+                    <path
+                        d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                </svg></span>
+            Solaris Energy
+        </a>
+        <div class="nav__links">
+            <a href="#configurator" class="nav__link">Calculator</a>
+            <a href="#features" class="nav__link">Features</a>
+            <a href="#cta" class="nav__cta">Get Quote</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero__content">
+            <div class="hero__text">
+                <div class="hero__badge reveal" style="--delay:.1s">☀ Clean Energy · Smart Tech</div>
+                <h1 class="hero__headline reveal" style="--delay:.2s">The Future of <span>Solar</span> Is Here</h1>
+                <div class="hero__roi reveal" style="--delay:.3s">
+                    <span class="hero__roi-number" data-target="340" data-suffix="%">0%</span>
+                    <span class="hero__roi-label">Average Customer ROI</span>
+                </div>
+                <p class="hero__sub reveal" style="--delay:.4s">Intelligent solar systems with real-time monitoring,
+                    predictive maintenance, and industry-leading returns on investment.</p>
+                <div class="hero__buttons reveal" style="--delay:.5s">
+                    <a href="#configurator" class="hero__btn hero__btn--primary">Calculate Savings</a>
+                    <a href="#features" class="hero__btn hero__btn--ghost">Learn More</a>
+                </div>
+            </div>
+            <div class="hero__visual reveal" style="--delay:.3s">
+                <div class="solar-grid">
+                    <div class="solar-cell">
+                        <div class="solar-cell__glow"></div>
+                    </div>
+                    <div class="solar-cell">
+                        <div class="solar-cell__glow"></div>
+                    </div>
+                    <div class="solar-cell">
+                        <div class="solar-cell__glow"></div>
+                    </div>
+                    <div class="solar-cell">
+                        <div class="solar-cell__glow"></div>
+                    </div>
+                    <div class="solar-cell">
+                        <div class="solar-cell__glow"></div>
+                    </div>
+                    <div class="solar-cell">
+                        <div class="solar-cell__glow"></div>
+                    </div>
+                    <div class="solar-cell">
+                        <div class="solar-cell__glow"></div>
+                    </div>
+                    <div class="solar-cell">
+                        <div class="solar-cell__glow"></div>
+                    </div>
+                    <div class="solar-cell">
+                        <div class="solar-cell__glow"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stats__container">
+            <div class="stats__item reveal" style="--delay:.1s">
+                <span class="stats__number" data-target="52" data-suffix="K+">0</span>
+                <span class="stats__label">Installations</span>
+            </div>
+            <div class="stats__div"></div>
+            <div class="stats__item reveal" style="--delay:.2s">
+                <span class="stats__number" data-target="340" data-suffix="%">0</span>
+                <span class="stats__label">Avg ROI</span>
+            </div>
+            <div class="stats__div"></div>
+            <div class="stats__item reveal" style="--delay:.3s">
+                <span class="stats__number" data-target="99.7" data-suffix="%" data-decimal="true">0</span>
+                <span class="stats__label">Uptime</span>
+            </div>
+            <div class="stats__div"></div>
+            <div class="stats__item reveal" style="--delay:.4s">
+                <span class="stats__number" data-target="24">0</span>
+                <span class="stats__label">Countries</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="configurator" id="configurator">
+        <div class="configurator__container">
+            <div class="configurator__header">
+                <p class="section-tag reveal">Solar Calculator</p>
+                <h2 class="section-title reveal" style="--delay:.1s">Estimate Your Savings</h2>
+                <p class="section-desc reveal" style="--delay:.2s">Adjust the sliders to calculate your potential solar
+                    energy savings.</p>
+            </div>
+            <div class="config-panel reveal" style="--delay:.3s">
+                <div class="config-panel__left">
+                    <div class="config-slider">
+                        <div class="config-slider__label">
+                            <span>Monthly Bill</span>
+                            <span class="config-slider__value" id="billValue">$200</span>
+                        </div>
+                        <input type="range" min="50" max="800" value="200" id="billSlider">
+                    </div>
+                    <div class="config-slider">
+                        <div class="config-slider__label">
+                            <span>Roof Size (sq ft)</span>
+                            <span class="config-slider__value" id="roofValue">1,500</span>
+                        </div>
+                        <input type="range" min="500" max="5000" value="1500" step="100" id="roofSlider">
+                    </div>
+                    <div class="config-slider">
+                        <div class="config-slider__label">
+                            <span>Sun Hours / Day</span>
+                            <span class="config-slider__value" id="sunValue">5</span>
+                        </div>
+                        <input type="range" min="3" max="10" value="5" id="sunSlider">
+                    </div>
+                </div>
+                <div class="config-panel__right">
+                    <div class="config-result">
+                        <div class="config-result__label">Annual Savings</div>
+                        <div class="config-result__value" id="annualSavings">$1,440</div>
+                        <div class="config-result__sub">Per year</div>
+                    </div>
+                    <div class="config-result__divider"></div>
+                    <div class="config-result">
+                        <div class="config-result__label">25-Year Savings</div>
+                        <div class="config-result__value" id="totalSavings">$36,000</div>
+                        <div class="config-result__sub" id="roiPercent">ROI: 340%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="features__container">
+            <div class="features__header" style="text-align:center;margin-bottom:0">
+                <p class="section-tag reveal">Why Solaris</p>
+                <h2 class="section-title reveal" style="--delay:.1s">Smart Solar Technology</h2>
+            </div>
+            <div class="features__grid">
+                <div class="feat reveal" style="--delay:.1s">
+                    <div class="feat__icon">📊</div>
+                    <h3 class="feat__title">Real-Time Monitoring</h3>
+                    <p class="feat__desc">Track energy production, consumption, and savings from your phone in real
+                        time.</p>
+                </div>
+                <div class="feat reveal" style="--delay:.2s">
+                    <div class="feat__icon">🔮</div>
+                    <h3 class="feat__title">Predictive AI</h3>
+                    <p class="feat__desc">Machine learning predicts maintenance needs before failures occur.</p>
+                </div>
+                <div class="feat reveal" style="--delay:.3s">
+                    <div class="feat__icon">🔋</div>
+                    <h3 class="feat__title">Battery Storage</h3>
+                    <p class="feat__desc">Store excess energy and use it when the sun isn't shining. Zero waste.</p>
+                </div>
+                <div class="feat reveal" style="--delay:.15s">
+                    <div class="feat__icon">🌐</div>
+                    <h3 class="feat__title">Grid Integration</h3>
+                    <p class="feat__desc">Sell surplus energy back to the grid and earn credits automatically.</p>
+                </div>
+                <div class="feat reveal" style="--delay:.25s">
+                    <div class="feat__icon">🛡️</div>
+                    <h3 class="feat__title">25-Year Warranty</h3>
+                    <p class="feat__desc">Industry-leading coverage with guaranteed performance for 25 years.</p>
+                </div>
+                <div class="feat reveal" style="--delay:.35s">
+                    <div class="feat__icon">🌱</div>
+                    <h3 class="feat__title">Carbon Offset</h3>
+                    <p class="feat__desc">Track your environmental impact with detailed carbon offset reports.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="cta">
+        <div class="cta__container">
+            <h2 class="cta__headline reveal">Start Saving With<br><span>Solar Today</span></h2>
+            <p class="cta__sub reveal" style="--delay:.1s">Free consultation and custom design for your property. No
+                commitment required.</p>
+            <a href="#" class="cta__btn reveal" style="--delay:.2s">Get a Free Quote</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 Solaris Energy. All rights reserved. This is a demo website.</p>
+    </footer>
+
+    <script>
+        (() => {
+            'use strict';
+            const $ = (s, c = document) => c.querySelector(s);
+            const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+            const raf = cb => requestAnimationFrame(cb);
+            const ease = t => 1 - Math.pow(1 - t, 4);
+
+            /* Reveal */
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); } });
+            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+            $$('.reveal').forEach(el => obs.observe(el));
+
+            /* Counters */
+            const cObs = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const target = parseFloat(el.dataset.target);
+                        const suffix = el.dataset.suffix || '';
+                        const prefix = el.dataset.prefix || '';
+                        const isDecimal = el.dataset.decimal === 'true';
+                        const dur = 2000, st = performance.now();
+                        function step(now) {
+                            const p = Math.min((now - st) / dur, 1);
+                            const v = target * ease(p);
+                            el.textContent = prefix + (isDecimal ? v.toFixed(1) : Math.floor(v).toLocaleString()) + suffix;
+                            if (p < 1) raf(step);
+                        }
+                        raf(step); cObs.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.5 });
+            $$('[data-target]').forEach(c => cObs.observe(c));
+
+            /* CONFIGURATOR */
+            const billSlider = $('#billSlider');
+            const roofSlider = $('#roofSlider');
+            const sunSlider = $('#sunSlider');
+            const billVal = $('#billValue');
+            const roofVal = $('#roofValue');
+            const sunVal = $('#sunValue');
+            const annualEl = $('#annualSavings');
+            const totalEl = $('#totalSavings');
+            const roiEl = $('#roiPercent');
+
+            function updateConfig() {
+                const bill = parseInt(billSlider.value);
+                const roof = parseInt(roofSlider.value);
+                const sun = parseInt(sunSlider.value);
+
+                billVal.textContent = '$' + bill;
+                roofVal.textContent = roof.toLocaleString();
+                sunVal.textContent = sun;
+
+                // Simplified calculation
+                const panelCapacity = Math.min(roof / 18, 40); // panels
+                const dailyKwh = panelCapacity * 0.4 * sun;
+                const monthlyKwh = dailyKwh * 30;
+                const avgRate = bill / (monthlyKwh > 0 ? Math.max(monthlyKwh * 0.8, 1) : 1);
+                const savingsRate = Math.min(0.85, (panelCapacity * 0.4 * sun * 30) / (bill / 0.12));
+                const annual = Math.round(bill * 12 * Math.min(savingsRate, 0.85));
+                const systemCost = panelCapacity * 250;
+                const total25 = annual * 25;
+                const roi = systemCost > 0 ? Math.round((total25 / systemCost) * 100) : 0;
+
+                annualEl.textContent = '$' + annual.toLocaleString();
+                totalEl.textContent = '$' + total25.toLocaleString();
+                roiEl.textContent = 'ROI: ' + roi + '%';
+            }
+
+            if (billSlider) {
+                billSlider.addEventListener('input', updateConfig);
+                roofSlider.addEventListener('input', updateConfig);
+                sunSlider.addEventListener('input', updateConfig);
+            }
+
+            /* Smooth scroll */
+            $$('a[href^="#"]').forEach(a => {
+                a.addEventListener('click', e => {
+                    const t = $(a.getAttribute('href'));
+                    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+                });
+            });
+        })();
+    </script>
+</body>
+
+</html>

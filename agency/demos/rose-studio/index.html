@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Rosé Studio — Boutique creative agency crafting bold visual identities and immersive brand experiences.">
+    <meta name="theme-color" content="#111111">
+    <title>Rosé Studio — Creative Direction & Design</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%23F472B6'/><text x='16' y='22' text-anchor='middle' fill='white' font-size='16' font-family='serif' font-weight='bold'>R</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        :root {
+            --bg: #0E0E0E;
+            --bg-card: #181818;
+            --surface: #141414;
+            --surface-2: #1E1E1E;
+            --border: rgba(255, 255, 255, .06);
+            --border-hover: rgba(244, 114, 182, .2);
+            --text: #B0A8A0;
+            --text-muted: rgba(255, 255, 255, .4);
+            --text-dim: rgba(255, 255, 255, .18);
+            --heading: #FAF0E8;
+            --accent: #F472B6;
+            --accent-glow: rgba(244, 114, 182, .25);
+            --accent-2: #FB7185;
+            --warm: #F5E6D3;
+            --font-heading: 'Outfit', sans-serif;
+            --font-accent: 'Playfair Display', serif;
+            --font-body: 'Outfit', sans-serif;
+            --radius: 14px;
+            --radius-sm: 10px;
+            --ease: cubic-bezier(.22, 1, .36, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased
+        }
+
+        body {
+            background: var(--bg);
+            min-height: 100vh
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: #fff
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        img {
+            display: block;
+            max-width: 100%
+        }
+
+        button {
+            border: none;
+            background: none;
+            font-family: inherit;
+            color: inherit;
+            cursor: pointer
+        }
+
+        /* NAV */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 0 clamp(24px, 5vw, 80px);
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(14, 14, 14, .8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border)
+        }
+
+        .nav__logo {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--heading);
+            letter-spacing: .08em;
+            text-transform: uppercase
+        }
+
+        .nav__logo span {
+            color: var(--accent)
+        }
+
+        .nav__links {
+            display: flex;
+            align-items: center;
+            gap: 32px
+        }
+
+        .nav__link {
+            font-size: .78rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            letter-spacing: .04em;
+            transition: color .3s
+        }
+
+        .nav__link:hover {
+            color: var(--heading)
+        }
+
+        .nav__cta {
+            padding: 10px 24px;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            border-radius: 100px;
+            font-size: .78rem;
+            font-weight: 600;
+            transition: all .3s var(--ease)
+        }
+
+        .nav__cta:hover {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 0 30px var(--accent-glow)
+        }
+
+        @media(max-width:768px) {
+            .nav__links {
+                display: none
+            }
+        }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px clamp(24px, 5vw, 80px) 80px;
+            overflow: hidden
+        }
+
+        .hero__bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0
+        }
+
+        .hero__bg-gradient {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(14, 14, 14, .3) 0%, var(--bg) 100%);
+            z-index: 1
+        }
+
+        .hero__bg-image {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #1a1015 0%, #2a1020 25%, #15101a 50%, #1a1520 75%, #0e0e0e 100%);
+            opacity: .8
+        }
+
+        .hero__bg-noise {
+            position: absolute;
+            inset: 0;
+            opacity: .03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            z-index: 2
+        }
+
+        .hero__content {
+            position: relative;
+            z-index: 3;
+            max-width: 900px
+        }
+
+        .hero__tag {
+            font-size: .7rem;
+            font-weight: 500;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 32px
+        }
+
+        .hero__headline {
+            font-family: var(--font-heading);
+            font-size: clamp(3.5rem, 10vw, 7rem);
+            font-weight: 900;
+            color: var(--heading);
+            line-height: .95;
+            margin-bottom: 28px;
+            letter-spacing: -.03em
+        }
+
+        .hero__headline em {
+            font-family: var(--font-accent);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--accent)
+        }
+
+        .hero__sub {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            max-width: 480px;
+            margin: 0 auto 40px;
+            font-weight: 300
+        }
+
+        .hero__buttons {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap
+        }
+
+        .hero__btn {
+            padding: 16px 38px;
+            border-radius: 100px;
+            font-size: .86rem;
+            font-weight: 600;
+            transition: all .3s var(--ease);
+            letter-spacing: .02em
+        }
+
+        .hero__btn--primary {
+            background: var(--accent);
+            color: #fff
+        }
+
+        .hero__btn--primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px var(--accent-glow)
+        }
+
+        .hero__btn--ghost {
+            border: 1.5px solid rgba(255, 255, 255, .1);
+            color: var(--text)
+        }
+
+        .hero__btn--ghost:hover {
+            border-color: var(--accent);
+            color: var(--heading)
+        }
+
+        .hero__scroll {
+            position: absolute;
+            bottom: 36px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: .65rem;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            z-index: 3
+        }
+
+        /* MARQUEE */
+        .marquee {
+            padding: 48px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            overflow: hidden
+        }
+
+        .marquee__track {
+            display: flex;
+            gap: 48px;
+            animation: marquee-scroll 25s linear infinite;
+            width: max-content
+        }
+
+        @keyframes marquee-scroll {
+            from {
+                transform: translateX(0)
+            }
+
+            to {
+                transform: translateX(-50%)
+            }
+        }
+
+        .marquee__item {
+            font-family: var(--font-heading);
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            font-weight: 600;
+            color: var(--text-dim);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .marquee__dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            flex-shrink: 0
+        }
+
+        /* PROJECTS */
+        .projects {
+            padding: clamp(80px, 12vh, 140px) clamp(24px, 5vw, 80px)
+        }
+
+        .projects__container {
+            max-width: 1300px;
+            margin: 0 auto
+        }
+
+        .projects__header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 56px;
+            flex-wrap: wrap;
+            gap: 20px
+        }
+
+        .projects__header-left {}
+
+        .projects__tag {
+            font-size: .7rem;
+            font-weight: 500;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px
+        }
+
+        .projects__title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: var(--heading);
+            line-height: 1.05
+        }
+
+        .projects__count {
+            font-size: .8rem;
+            color: var(--text-dim)
+        }
+
+        .projects__grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px
+        }
+
+        .proj {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius);
+            aspect-ratio: 4/3;
+            display: flex;
+            align-items: flex-end;
+            transition: transform .6s var(--ease)
+        }
+
+        .proj:hover {
+            transform: scale(1.02)
+        }
+
+        .proj__bg {
+            position: absolute;
+            inset: 0;
+            transition: transform .7s var(--ease)
+        }
+
+        .proj:hover .proj__bg {
+            transform: scale(1.08)
+        }
+
+        .proj__overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, .8) 0%, rgba(0, 0, 0, .1) 50%, transparent 100%);
+            z-index: 1;
+            transition: background .4s
+        }
+
+        .proj:hover .proj__overlay {
+            background: linear-gradient(to top, rgba(0, 0, 0, .85) 0%, rgba(0, 0, 0, .2) 60%, transparent 100%)
+        }
+
+        .proj__info {
+            position: relative;
+            z-index: 2;
+            padding: 28px;
+            width: 100%
+        }
+
+        .proj__category {
+            font-size: .65rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            margin-bottom: 8px
+        }
+
+        .proj__name {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px
+        }
+
+        .proj__sub {
+            font-size: .78rem;
+            color: rgba(255, 255, 255, .5)
+        }
+
+        .proj--tall {
+            grid-row: span 2;
+            aspect-ratio: auto
+        }
+
+        @media(max-width:768px) {
+            .projects__grid {
+                grid-template-columns: 1fr
+            }
+
+            .proj--tall {
+                grid-row: span 1;
+                aspect-ratio: 4/3
+            }
+        }
+
+        /* ABOUT */
+        .about {
+            padding: clamp(80px, 12vh, 140px) clamp(24px, 5vw, 80px);
+            background: var(--surface)
+        }
+
+        .about__container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center
+        }
+
+        .about__headline {
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            font-weight: 700;
+            color: var(--heading);
+            line-height: 1.2;
+            margin-bottom: 24px
+        }
+
+        .about__headline em {
+            font-family: var(--font-accent);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--accent)
+        }
+
+        .about__desc {
+            color: var(--text-muted);
+            font-size: .95rem;
+            line-height: 1.8;
+            max-width: 640px;
+            margin: 0 auto 48px;
+            font-weight: 300
+        }
+
+        .about__stats {
+            display: flex;
+            justify-content: center;
+            gap: 64px
+        }
+
+        .about__stat-number {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: var(--heading);
+            display: block
+        }
+
+        .about__stat-label {
+            font-size: .68rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            margin-top: 4px
+        }
+
+        @media(max-width:600px) {
+            .about__stats {
+                gap: 32px;
+                flex-wrap: wrap
+            }
+        }
+
+        /* CTA */
+        .cta {
+            padding: clamp(100px, 14vh, 180px) clamp(24px, 5vw, 80px);
+            text-align: center;
+            position: relative;
+            overflow: hidden
+        }
+
+        .cta__glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 300px;
+            background: radial-gradient(ellipse, rgba(244, 114, 182, .08) 0%, transparent 60%);
+            filter: blur(80px);
+            pointer-events: none
+        }
+
+        .cta__container {
+            position: relative;
+            z-index: 2;
+            max-width: 640px;
+            margin: 0 auto
+        }
+
+        .cta__headline {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            color: var(--heading);
+            line-height: 1.05;
+            margin-bottom: 18px
+        }
+
+        .cta__headline em {
+            font-family: var(--font-accent);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--accent)
+        }
+
+        .cta__sub {
+            color: var(--text-muted);
+            font-size: .92rem;
+            line-height: 1.7;
+            margin-bottom: 36px;
+            font-weight: 300
+        }
+
+        .cta__btn {
+            display: inline-flex;
+            padding: 18px 48px;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 100px;
+            font-size: .95rem;
+            font-weight: 600;
+            transition: all .3s var(--ease)
+        }
+
+        .cta__btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 50px var(--accent-glow)
+        }
+
+        /* FOOTER */
+        .footer {
+            padding: 40px clamp(24px, 5vw, 80px);
+            border-top: 1px solid var(--border);
+            text-align: center
+        }
+
+        .footer p {
+            font-size: .72rem;
+            color: var(--text-dim)
+        }
+
+        /* REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity .8s var(--ease), transform .8s var(--ease);
+            transition-delay: var(--delay, 0s)
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            .reveal {
+                transition-duration: .01s !important;
+                transform: none !important
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav">
+        <a href="#" class="nav__logo">Rosé <span>Studio</span></a>
+        <div class="nav__links">
+            <a href="#work" class="nav__link">Work</a>
+            <a href="#about" class="nav__link">About</a>
+            <a href="#cta" class="nav__cta">Get in Touch</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero__bg">
+            <div class="hero__bg-image"></div>
+            <div class="hero__bg-noise"></div>
+            <div class="hero__bg-gradient"></div>
+        </div>
+        <div class="hero__content">
+            <p class="hero__tag reveal" style="--delay:.1s">Creative Direction · Brand Design · Digital Craft</p>
+            <h1 class="hero__headline reveal" style="--delay:.2s">We Create<br><em>Bold</em> Brands</h1>
+            <p class="hero__sub reveal" style="--delay:.35s">Boutique creative studio specializing in visual identity,
+                art direction, and digital experiences that demand attention.</p>
+            <div class="hero__buttons reveal" style="--delay:.5s">
+                <a href="#work" class="hero__btn hero__btn--primary">View Work</a>
+                <a href="#cta" class="hero__btn hero__btn--ghost">Contact Us</a>
+            </div>
+        </div>
+        <div class="hero__scroll">Scroll to Explore</div>
+    </section>
+
+    <div class="marquee">
+        <div class="marquee__track" id="marqueeTrack">
+            <span class="marquee__item"><span class="marquee__dot"></span>Brand Identity</span>
+            <span class="marquee__item"><span class="marquee__dot"></span>Art Direction</span>
+            <span class="marquee__item"><span class="marquee__dot"></span>Web Design</span>
+            <span class="marquee__item"><span class="marquee__dot"></span>Motion Graphics</span>
+            <span class="marquee__item"><span class="marquee__dot"></span>Typography</span>
+            <span class="marquee__item"><span class="marquee__dot"></span>Creative Strategy</span>
+            <span class="marquee__item"><span class="marquee__dot"></span>Packaging</span>
+            <span class="marquee__item"><span class="marquee__dot"></span>Editorial</span>
+        </div>
+    </div>
+
+    <section class="projects" id="work">
+        <div class="projects__container">
+            <div class="projects__header">
+                <div class="projects__header-left">
+                    <p class="projects__tag reveal">Selected Work</p>
+                    <h2 class="projects__title reveal" style="--delay:.1s">Featured Projects</h2>
+                </div>
+                <p class="projects__count reveal" style="--delay:.2s">12 Projects · 2022–2026</p>
+            </div>
+            <div class="projects__grid">
+                <div class="proj proj--tall reveal" style="--delay:.1s">
+                    <div class="proj__bg"
+                        style="background:linear-gradient(135deg,#2a1525 0%,#401530 50%,#1a1020 100%)"></div>
+                    <div class="proj__overlay"></div>
+                    <div class="proj__info">
+                        <p class="proj__category">Brand Identity</p>
+                        <h3 class="proj__name">Noir Collection</h3>
+                        <p class="proj__sub">Luxury fashion label rebrand</p>
+                    </div>
+                </div>
+                <div class="proj reveal" style="--delay:.2s">
+                    <div class="proj__bg" style="background:linear-gradient(135deg,#1a2030 0%,#0a1520 100%)"></div>
+                    <div class="proj__overlay"></div>
+                    <div class="proj__info">
+                        <p class="proj__category">Web Design</p>
+                        <h3 class="proj__name">Meridian Hotels</h3>
+                        <p class="proj__sub">Hospitality digital experience</p>
+                    </div>
+                </div>
+                <div class="proj reveal" style="--delay:.3s">
+                    <div class="proj__bg" style="background:linear-gradient(135deg,#2a2015 0%,#1a1510 100%)"></div>
+                    <div class="proj__overlay"></div>
+                    <div class="proj__info">
+                        <p class="proj__category">Art Direction</p>
+                        <h3 class="proj__name">Ochre Magazine</h3>
+                        <p class="proj__sub">Editorial design & photography</p>
+                    </div>
+                </div>
+                <div class="proj reveal" style="--delay:.15s">
+                    <div class="proj__bg" style="background:linear-gradient(135deg,#15201a 0%,#0a1510 100%)"></div>
+                    <div class="proj__overlay"></div>
+                    <div class="proj__info">
+                        <p class="proj__category">Packaging</p>
+                        <h3 class="proj__name">Terra Botanics</h3>
+                        <p class="proj__sub">Organic skincare packaging</p>
+                    </div>
+                </div>
+                <div class="proj reveal" style="--delay:.25s">
+                    <div class="proj__bg" style="background:linear-gradient(135deg,#201520 0%,#100a15 100%)"></div>
+                    <div class="proj__overlay"></div>
+                    <div class="proj__info">
+                        <p class="proj__category">Motion</p>
+                        <h3 class="proj__name">Flux Records</h3>
+                        <p class="proj__sub">Music label visual identity</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about__container">
+            <p class="projects__tag reveal">About Us</p>
+            <h2 class="about__headline reveal" style="--delay:.1s">A small studio with<br><em>big ambitions</em></h2>
+            <p class="about__desc reveal" style="--delay:.2s">We're a tight-knit team of designers, art directors, and
+                creative thinkers. We partner with brands that value craft, intention, and the power of visual
+                storytelling.</p>
+            <div class="about__stats reveal" style="--delay:.3s">
+                <div>
+                    <span class="about__stat-number" data-target="48" data-suffix="+">0</span>
+                    <span class="about__stat-label">Projects</span>
+                </div>
+                <div>
+                    <span class="about__stat-number" data-target="8">0</span>
+                    <span class="about__stat-label">Team</span>
+                </div>
+                <div>
+                    <span class="about__stat-number" data-target="6" data-suffix=" yrs">0</span>
+                    <span class="about__stat-label">Experience</span>
+                </div>
+                <div>
+                    <span class="about__stat-number" data-target="14">0</span>
+                    <span class="about__stat-label">Awards</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="cta">
+        <div class="cta__glow"></div>
+        <div class="cta__container">
+            <h2 class="cta__headline reveal">Let's Create<br>Something <em>Beautiful</em></h2>
+            <p class="cta__sub reveal" style="--delay:.1s">We're selective about the projects we take on — but if the
+                fit is right, magic happens.</p>
+            <a href="#" class="cta__btn reveal" style="--delay:.2s">Start a Conversation</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 Rosé Studio. All rights reserved. This is a demo website.</p>
+    </footer>
+
+    <script>
+        (() => {
+            'use strict';
+            const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+            const $ = (s, c = document) => c.querySelector(s);
+            const raf = cb => requestAnimationFrame(cb);
+            const ease = t => 1 - Math.pow(1 - t, 4);
+
+            /* Reveal */
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); } });
+            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+            $$('.reveal').forEach(el => obs.observe(el));
+
+            /* Marquee duplicate */
+            const track = $('#marqueeTrack');
+            if (track) track.innerHTML += track.innerHTML;
+
+            /* Counters */
+            const cObs = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const target = parseFloat(el.dataset.target);
+                        const suffix = el.dataset.suffix || '';
+                        const dur = 2000, st = performance.now();
+                        function step(now) {
+                            const p = Math.min((now - st) / dur, 1);
+                            el.textContent = Math.floor(target * ease(p)) + suffix;
+                            if (p < 1) raf(step);
+                        }
+                        raf(step); cObs.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.5 });
+            $$('[data-target]').forEach(c => cObs.observe(c));
+
+            /* Smooth scroll */
+            $$('a[href^="#"]').forEach(a => {
+                a.addEventListener('click', e => {
+                    const t = $(a.getAttribute('href'));
+                    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+                });
+            });
+        })();
+    </script>
+</body>
+
+</html>
