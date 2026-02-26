@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="North Vector Labs — Explore our diverse portfolio of digital projects across various categories.">
+    <meta name="theme-color" content="#0B0B0F">
+    <title>Projects — North Vector Labs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .projects-header {
+            padding: 150px 0 50px;
+            text-align: center;
+        }
+
+        .category-section {
+            padding: 50px 5%;
+        }
+
+        .category-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--white);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s ease, background 0.3s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #1a1a24;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.5);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Fallbacks for missing images if needed */
+        .img-ecommerce {
+            background: linear-gradient(135deg, #00CFFE 0%, #0984e3 100%);
+        }
+
+        .img-corporate {
+            background: linear-gradient(135deg, #FDCB6E 0%, #e17055 100%);
+        }
+
+        .img-portfolio {
+            background: linear-gradient(135deg, #FD79A8 0%, #e84393 100%);
+        }
+
+        .img-webapp {
+            background: linear-gradient(135deg, #6C5CE7 0%, #a29bfe 100%);
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .project-info h3 {
+            font-size: 1.25rem;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .project-info p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 15px;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: var(--white);
+        }
+
+        .project-link svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .project-link:hover svg {
+            transform: translateX(4px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ===== NAVIGATION ===== -->
+    <nav id="navbar" class="navbar" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="navbar__logo" aria-label="North Vector Labs Home">
+            <span class="navbar__logo-text">NORTH VECTOR LABS</span>
+        </a>
+        <div class="navbar__links" id="navLinks">
+            <a href="projects.html" class="navbar__link" data-cursor="link" style="color: var(--white);">Projects</a>
+            <a href="index.html#services" class="navbar__link" data-cursor="link">Services</a>
+            <a href="index.html#showcase" class="navbar__link" data-cursor="link">Work</a>
+            <a href="index.html#cases" class="navbar__link" data-cursor="link">Case Studies</a>
+            <a href="index.html#about" class="navbar__link" data-cursor="link">About</a>
+            <a href="contact.html" class="navbar__link navbar__link--cta" data-cursor="link">Order & Contact</a>
+        </div>
+        <button class="navbar__burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- ===== HEADER ===== -->
+    <header class="projects-header">
+        <p class="section-tag reveal reveal--up">Our Work</p>
+        <h1 class="section-title reveal reveal--up" style="--delay:.1s">Project Categories</h1>
+        <p class="section-desc reveal reveal--up" style="--delay:.2s">Discover our digital solutions tailored to various
+            industries.</p>
+    </header>
+
+    <!-- ===== CATEGORY: E-COMMERCE ===== -->
+    <section class="category-section">
+        <h2 class="category-title">E-Commerce Platforms</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image img-ecommerce">Aqua Wellness Preview</div>
+                <div class="project-info">
+                    <h3>Aqua Wellness</h3>
+                    <p>High-conversion wellness brand store with premium UI elements.</p>
+                    <a href="demos/aqua-wellness/index.html" class="project-link" target="_blank">
+                        View Live Site
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image img-ecommerce"
+                    style="background: linear-gradient(135deg, #0984e3 0%, #74b9ff 100%);">Urban Attire Preview</div>
+                <div class="project-info">
+                    <h3>Urban Attire</h3>
+                    <p>Modern streetwear fashion boutique with immersive shopping experience.</p>
+                    <a href="#" class="project-link">
+                        Coming Soon
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CATEGORY: CREATIVE PORTFOLIOS ===== -->
+    <section class="category-section">
+        <h2 class="category-title">Creative Portfolios</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image img-portfolio">Rosé Studio Preview</div>
+                <div class="project-info">
+                    <h3>Rosé Studio</h3>
+                    <p>Award-winning agency portfolio showcasing creative case studies.</p>
+                    <a href="demos/rose-studio/index.html" class="project-link" target="_blank">
+                        View Live Site
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image img-portfolio"
+                    style="background: linear-gradient(135deg, #e84393 0%, #fab1a0 100%);">Luxe Atelier Preview</div>
+                <div class="project-info">
+                    <h3>Luxe Atelier</h3>
+                    <p>Minimalist interior design showcase with elegant typography and fluid transitions.</p>
+                    <a href="demos/luxe-atelier/index.html" class="project-link" target="_blank">
+                        View Live Site
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CATEGORY: CORPORATE & B2B ===== -->
+    <section class="category-section">
+        <h2 class="category-title">Corporate & SaaS</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image img-webapp">Nebula Finance Preview</div>
+                <div class="project-info">
+                    <h3>Nebula Finance</h3>
+                    <p>Next-generation fintech dashboard web application.</p>
+                    <a href="demos/nebula-finance/index.html" class="project-link" target="_blank">
+                        View Live Site
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image img-corporate">Solaris Energy Preview</div>
+                <div class="project-info">
+                    <h3>Solaris Energy</h3>
+                    <p>Modern clean tech energy provider with lead optimization workflows.</p>
+                    <a href="demos/solaris-energy/index.html" class="project-link" target="_blank">
+                        View Live Site
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" role="contentinfo" style="margin-top: 50px;">
+        <div class="footer__container">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <span class="footer__logo">NORTH VECTOR LABS</span>
+                    <p>Crafting digital experiences that defy convention.</p>
+                </div>
+                <div class="footer__links">
+                    <div class="footer__col">
+                        <h4>Navigate</h4>
+                        <a href="index.html">Home</a>
+                        <a href="projects.html">Projects</a>
+                        <a href="contact.html">Order & Contact</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2026 North Vector Labs. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>
