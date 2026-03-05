@@ -17,15 +17,25 @@
 
     /* ========== LOADER ========== */
     const loader = $('#loader');
-    window.addEventListener('load', () => {
+    // Use DOMContentLoaded instead of 'load' — iframes block the load event indefinitely
+    const initLoader = () => {
         setTimeout(() => {
             loader.classList.add('is-hidden');
             document.body.style.overflow = '';
             initRevealObserver();
             greetReturningUser();
             initTimelineScroll();
-        }, 2000);
-    });
+            // Lazily inject iframe srcs now that the page is visible
+            $$('iframe[data-src]').forEach(iframe => {
+                iframe.src = iframe.dataset.src;
+            });
+        }, 1800);
+    };
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLoader);
+    } else {
+        initLoader();
+    }
     document.body.style.overflow = 'hidden';
 
     /* ========== SMART PERSONALIZATION ========== */
@@ -137,7 +147,26 @@
             mouseY = e.clientY / window.innerHeight;
         });
 
+        let isHeroVisible = true;
+
+        let heroRaf = null;
+
+        const heroObserver = new IntersectionObserver(entries => {
+
+            isHeroVisible = entries[0].isIntersecting;
+
+            if (isHeroVisible && !heroRaf) drawHero();
+
+        });
+
+        heroObserver.observe(heroCanvas);
+
+
+
         function drawHero() {
+
+            if (!isHeroVisible) { heroRaf = null; return; }
+
             ctx.clearRect(0, 0, W, H);
             blobs.forEach(b => {
                 b.phase += 0.006;
@@ -153,7 +182,7 @@
                 ctx.arc(bx, by, b.r, 0, Math.PI * 2);
                 ctx.fill();
             });
-            raf(drawHero);
+            heroRaf = raf(drawHero);
         }
         drawHero();
     }
@@ -183,7 +212,26 @@
             });
         }
 
+        let isParticlesVisible = true;
+
+        let particlesRaf = null;
+
+        const particlesObserver = new IntersectionObserver(entries => {
+
+            isParticlesVisible = entries[0].isIntersecting;
+
+            if (isParticlesVisible && !particlesRaf) drawParticles();
+
+        });
+
+        particlesObserver.observe(particleCanvas);
+
+
+
         function drawParticles() {
+
+            if (!isParticlesVisible) { particlesRaf = null; return; }
+
             pCtx.clearRect(0, 0, pW, pH);
             particles.forEach(p => {
                 p.x += p.vx; p.y += p.vy;
@@ -194,7 +242,7 @@
                 pCtx.fillStyle = `rgba(255,255,255,${p.o})`;
                 pCtx.fill();
             });
-            raf(drawParticles);
+            particlesRaf = raf(drawParticles);
         }
         drawParticles();
     }
@@ -204,12 +252,21 @@
     if (heroGlow && !isTouchDevice) {
         let gx = 0, gy = 0, gtx = 0, gty = 0;
         document.addEventListener('mousemove', e => { gtx = e.clientX - 300; gty = e.clientY - 300; });
+        let isGlowVisible = true;
+        let glowRaf = null;
+        const glowObserver = new IntersectionObserver(entries => {
+            isGlowVisible = entries[0].isIntersecting;
+            if (isGlowVisible && !glowRaf) animateGlow();
+        });
+        glowObserver.observe(heroGlow);
+
         function animateGlow() {
+            if (!isGlowVisible) { glowRaf = null; return; }
             gx = lerp(gx, gtx, 0.05); gy = lerp(gy, gty, 0.05);
             heroGlow.style.transform = `translate3d(${gx}px, ${gy}px, 0)`;
-            raf(animateGlow);
+            glowRaf = raf(animateGlow);
         }
-        raf(animateGlow);
+        animateGlow();
     }
 
     /* ========== HERO 3D OBJECT — Aggressive mouse response ========== */
@@ -220,13 +277,22 @@
             h3dTx = ((e.clientY / window.innerHeight) - 0.5) * 35;
             h3dTy = ((e.clientX / window.innerWidth) - 0.5) * 35;
         });
+        let is3dVisible = true;
+        let h3dRaf = null;
+        const h3dObserver = new IntersectionObserver(entries => {
+            is3dVisible = entries[0].isIntersecting;
+            if (is3dVisible && !h3dRaf) animateHero3d();
+        });
+        h3dObserver.observe(hero3d);
+
         function animateHero3d() {
+            if (!is3dVisible) { h3dRaf = null; return; }
             h3dRx = lerp(h3dRx, h3dTx, 0.06);
             h3dRy = lerp(h3dRy, h3dTy, 0.06);
             hero3d.style.transform = `rotateX(${h3dRx}deg) rotateY(${h3dRy}deg)`;
-            raf(animateHero3d);
+            h3dRaf = raf(animateHero3d);
         }
-        raf(animateHero3d);
+        animateHero3d();
     }
 
     /* ========== KINETIC HERO TEXT ========== */
@@ -634,7 +700,26 @@
             });
         }
 
+        let isCtaVisible = true;
+
+        let ctaRaf = null;
+
+        const ctaObserver = new IntersectionObserver(entries => {
+
+            isCtaVisible = entries[0].isIntersecting;
+
+            if (isCtaVisible && !ctaRaf) drawCta();
+
+        });
+
+        ctaObserver.observe(ctaCanvas);
+
+
+
         function drawCta() {
+
+            if (!isCtaVisible) { ctaRaf = null; return; }
+
             ctx2.clearRect(0, 0, cW, cH);
 
             // Ambient core glow
@@ -658,7 +743,7 @@
                 ctx2.fill();
             });
 
-            raf(drawCta);
+            ctaRaf = raf(drawCta);
         }
         drawCta();
     }
